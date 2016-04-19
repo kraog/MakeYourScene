@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
     private void initRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        GridLayoutManager glmanager =new GridLayoutManager(this, 1);
+        recyclerView.setLayoutManager(glmanager);
 
     }
 
