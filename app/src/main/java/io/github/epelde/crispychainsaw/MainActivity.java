@@ -20,20 +20,15 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.epelde.crispychainsaw.model.data.DataManagerImpl;
+import io.github.epelde.crispychainsaw.model.domain.Band;
 import io.github.epelde.crispychainsaw.picasso.CircleTransform;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.OnItemClickListener {
 
     public static final String AVATAR_URL = "http://lorempixel.com/200/200/people/1/";
 
-    private static List<ViewModel> items = new ArrayList<>();
-
-    static {
-        items.add(new ViewModel("Akhvan ", "http://poprocklaredo.webcindario.com/grupos/akhvan1.jpg"));
-        for (int i = 2; i <= 10; i++) {
-            items.add(new ViewModel("Item " + i, "http://lorempixel.com/500/500/animals/" + i));
-        }
-    }
+    private static List<Band> items = new DataManagerImpl().getBands();
 
     private DrawerLayout drawerLayout;
     private View content;
@@ -44,12 +39,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initRecyclerView();
         initFab();
         initToolbar();
         setupDrawerLayout();
-
         content = findViewById(R.id.content);
 
         final ImageView avatar = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.avatar);
@@ -60,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         }
     }
 
-    @Override public void onEnterAnimationComplete() {
+    @Override
+    public void onEnterAnimationComplete() {
         super.onEnterAnimationComplete();
         setRecyclerAdapter(recyclerView);
         recyclerView.scheduleLayoutAnimation();
@@ -68,9 +62,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
     private void initRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        GridLayoutManager glmanager =new GridLayoutManager(this, 1);
-        recyclerView.setLayoutManager(glmanager);
-
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
     }
 
     private void setRecyclerAdapter(RecyclerView recyclerView) {
@@ -81,7 +73,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
     private void initFab() {
         findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 Snackbar.make(content, "FAB Clicked", Snackbar.LENGTH_SHORT).show();
             }
         });
@@ -100,10 +93,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
     private void setupDrawerLayout() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override public boolean onNavigationItemSelected(MenuItem menuItem) {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Snackbar.make(content, menuItem.getTitle() + " pressed", Snackbar.LENGTH_LONG).show();
                 menuItem.setChecked(true);
                 drawerLayout.closeDrawers();
@@ -119,11 +112,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    @Override public void onItemClick(View view, ViewModel viewModel) {
-        DetailActivity.navigate(this, view.findViewById(R.id.image), viewModel);
+    @Override
+    public void onItemClick(View view, Band band) {
+        DetailActivity.navigate(this, view.findViewById(R.id.image), band);
     }
 }
