@@ -13,11 +13,11 @@ import io.github.epelde.crispychainsaw.model.domain.Band;
 /**
  * Created by epelde on 20/04/2016.
  */
-public class BandDetailViewModel {
+public class BandItemViewModel {
 
     public ObservableField<Band> band;
 
-    public BandDetailViewModel(@NonNull Band band) {
+    public BandItemViewModel(@NonNull Band band) {
         this.band = new ObservableField<Band>(band);
     }
 

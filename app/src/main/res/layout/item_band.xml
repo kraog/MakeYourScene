@@ -4,7 +4,7 @@
     <data>
         <variable
             name="bandDetailVM"
-            type="io.github.epelde.crispychainsaw.viewmodel.BandDetailViewModel"/>
+            type="io.github.epelde.crispychainsaw.viewmodel.BandItemViewModel"/>
     </data>
     <FrameLayout
         android:orientation="vertical"
@@ -21,6 +21,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
+                android:background="@android:color/black"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 app:imageUrl="@{bandDetailVM.band.imageUrl}"/>

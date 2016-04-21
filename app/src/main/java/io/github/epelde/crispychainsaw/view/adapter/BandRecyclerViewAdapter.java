@@ -8,14 +8,15 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import io.github.epelde.crispychainsaw.R;
-import io.github.epelde.crispychainsaw.databinding.BandItemBinding;
+import io.github.epelde.crispychainsaw.databinding.ItemBandBinding;
 import io.github.epelde.crispychainsaw.model.domain.Band;
-import io.github.epelde.crispychainsaw.viewmodel.BandDetailViewModel;
+import io.github.epelde.crispychainsaw.viewmodel.BandItemViewModel;
 
 /**
  * Created by epelde on 20/04/2016.
  */
 public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerViewAdapter.BandViewHolder> {
+
     private List<Band> bandList;
 
     public BandRecyclerViewAdapter(List<Band> list) {
@@ -24,14 +25,14 @@ public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerVi
 
     @Override
     public BandViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        BandItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.band_item, parent, false);
+        ItemBandBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.item_band, parent, false);
         return new BandViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(BandViewHolder holder, int position) {
-        holder.getBinding().setBandDetailVM(new BandDetailViewModel(bandList.get(position)));
+        holder.getBinding().setBandDetailVM(new BandItemViewModel(bandList.get(position)));
     }
 
     @Override
@@ -40,14 +41,14 @@ public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerVi
     }
 
     public class BandViewHolder extends RecyclerView.ViewHolder {
-        private BandItemBinding binding;
+        private ItemBandBinding binding;
 
-        public BandViewHolder(BandItemBinding binding) {
+        public BandViewHolder(ItemBandBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public BandItemBinding getBinding() {
+        public ItemBandBinding getBinding() {
             return this.binding;
         }
     }
