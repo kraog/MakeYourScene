@@ -17,9 +17,12 @@ public class BandListViewModel {
 
     public ObservableArrayList<Band> bandList = new ObservableArrayList<Band>();
 
-    public BandListViewModel() {
+    static BandRecyclerViewAdapter.BandRecyclerViewListener listener;
+
+    public BandListViewModel(BandRecyclerViewAdapter.BandRecyclerViewListener listener) {
         DataManager dm = new DataManagerImpl();
         bandList.addAll(dm.getBands());
+        this.listener = listener;
     }
 
     @BindingAdapter("bind:items")
@@ -27,6 +30,6 @@ public class BandListViewModel {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         view.setLayoutManager(layoutManager);
-        view.setAdapter(new BandRecyclerViewAdapter(list));
+        view.setAdapter(new BandRecyclerViewAdapter(list, listener));
     }
 }

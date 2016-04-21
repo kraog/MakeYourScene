@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="bandDetailVM"
+            name="bandItemVM"
             type="io.github.epelde.crispychainsaw.viewmodel.BandItemViewModel"/>
     </data>
     <FrameLayout
@@ -24,10 +24,11 @@
                 android:background="@android:color/black"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                app:imageUrl="@{bandDetailVM.band.imageUrl}"/>
+                app:onClickListener="@{bandItemVM.getOnClickListener}"
+                app:imageUrl="@{bandItemVM.band.imageUrl}"/>
 
             <TextView
-                android:text="@{bandDetailVM.band.name}"
+                android:text="@{bandItemVM.band.name}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/spacing_large"
