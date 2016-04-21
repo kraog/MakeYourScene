@@ -12,46 +12,48 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import io.github.epelde.crispychainsaw.model.domain.Band;
+
 /**
  * Created by Gorka on 19/04/2016.
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements View.OnClickListener {
 
-    private List<ViewModel> items;
+    private List<Band> items;
     private OnItemClickListener onItemClickListener;
-    private Context context;
 
-    public RecyclerViewAdapter(List<ViewModel> items) {
+    public RecyclerViewAdapter(List<Band> items) {
         this.items = items;
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
-        this.context = context;
     }
 
-    @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false);
         v.setOnClickListener(this);
-
         return new ViewHolder(v);
     }
 
-    @Override public void onBindViewHolder(ViewHolder holder, int position) {
-        ViewModel item = items.get(position);
-        holder.text.setText(item.getText());
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Band item = items.get(position);
+        holder.text.setText(item.getName());
         holder.image.setImageBitmap(null);
-        Picasso.with(holder.image.getContext()).load(item.getImage()).into(holder.image);
+        Picasso.with(holder.image.getContext()).load(item.getImageUrl()).into(holder.image);
         holder.itemView.setTag(item);
-
     }
 
-    @Override public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return items.size();
     }
 
-    @Override public void onClick(final View v) {
-        onItemClickListener.onItemClick(v, (ViewModel) v.getTag());
+    @Override
+    public void onClick(final View v) {
+        onItemClickListener.onItemClick(v, (Band)v.getTag());
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,9 +68,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public interface OnItemClickListener {
-
-        void onItemClick(View view, ViewModel viewModel);
-
+        void onItemClick(View view, Band band);
     }
 }
 

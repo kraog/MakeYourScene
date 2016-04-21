@@ -1,5 +1,6 @@
 package io.github.epelde.crispychainsaw;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
@@ -31,19 +32,22 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.epelde.crispychainsaw.model.domain.Band;
 
 public class DetailActivity extends AppCompatActivity {
 
     private static final String EXTRA_IMAGE = "io.github.epelde.crispychainsaw.extraImage";
-    private static final String EXTRA_TITLE = "io.github.epelde.crispychainsaw.extraTitle";
+    //private static final String EXTRA_TITLE = "io.github.epelde.crispychainsaw.extraTitle";
+    private static final String EXTRA_BAND = "io.github.epelde.crispychainsaw.EXTRA_BAND";
+
     private CollapsingToolbarLayout collapsingToolbarLayout;
     FragmentManager fm = getSupportFragmentManager();
 
-    public static void navigate(AppCompatActivity activity, View transitionImage, ViewModel viewModel) {
+    public static void navigate(AppCompatActivity activity, View transitionImage, Band band) {
         Intent intent = new Intent(activity, DetailActivity.class);
-        intent.putExtra(EXTRA_IMAGE, viewModel.getImage());
-        intent.putExtra(EXTRA_TITLE, viewModel.getText());
-
+        //intent.putExtra(EXTRA_IMAGE, band.getImageUrl());
+        //intent.putExtra(EXTRA_TITLE, band.getName());
+        intent.putExtra(EXTRA_BAND, band);
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, transitionImage, EXTRA_IMAGE);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
     }
@@ -60,17 +64,18 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String itemTitle = getIntent().getStringExtra(EXTRA_TITLE);
+        //String itemTitle = getIntent().getStringExtra(EXTRA_TITLE);
+        Band band = (Band) getIntent().getSerializableExtra(EXTRA_BAND);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle(itemTitle);
+        collapsingToolbarLayout.setTitle(band.getName());
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         TextView tv = (TextView)findViewById(R.id.title);
         TextView tv2 = (TextView)findViewById(R.id.title_ipsum);
-        tv.setText(itemTitle);
+        tv.setText(band.getName());
         tv2.setText(getString(R.string.lorem_ipsum));
 
         final ImageView image = (ImageView) findViewById(R.id.image);
-        Picasso.with(this).load(getIntent().getStringExtra(EXTRA_IMAGE)).into(image, new Callback() {
+        Picasso.with(this).load(band.getImageUrl()).into(image, new Callback() {
             @Override
             public void onSuccess() {
                 Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
@@ -118,7 +123,6 @@ public class DetailActivity extends AppCompatActivity {
     private void updateBackground(FloatingActionButton fab, Palette palette) {
         int lightVibrantColor = palette.getLightVibrantColor(getResources().getColor(android.R.color.white));
         int vibrantColor = palette.getVibrantColor(getResources().getColor(R.color.accent));
-
         fab.setRippleColor(lightVibrantColor);
         fab.setBackgroundTintList(ColorStateList.valueOf(vibrantColor));
     }
