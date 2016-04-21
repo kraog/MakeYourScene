@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         setContentView(R.layout.activity_main);
 
         initRecyclerView();
-        initFab();
+       // initFab();
         initToolbar();
         setupDrawerLayout();
 
@@ -80,11 +80,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     }
 
     private void initFab() {
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+       /* findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Snackbar.make(content, "FAB Clicked", Snackbar.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
     private void initToolbar() {
