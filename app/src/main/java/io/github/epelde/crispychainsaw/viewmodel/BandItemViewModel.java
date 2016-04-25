@@ -4,6 +4,7 @@ import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -16,13 +17,29 @@ import io.github.epelde.crispychainsaw.model.domain.Band;
 public class BandItemViewModel {
 
     public ObservableField<Band> band;
+    private BandItemListener bil;
 
-    public BandItemViewModel(@NonNull Band band) {
+    public BandItemViewModel(@NonNull Band band, BandItemListener bil) {
         this.band = new ObservableField<Band>(band);
+        this.bil = bil;
     }
 
     @BindingAdapter({"bind:imageUrl"})
     public static void bindImage(ImageView view, String url) {
         Picasso.with(view.getContext()).load(url).fit().centerCrop().into(view);
+    }
+
+    public interface BandItemListener{
+        public void onItemClicked(Band band);
+    }
+
+    public View.OnClickListener getOnClickListener(){
+        return new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                bil.onItemClicked(BandItemViewModel.this.band.get());
+            }
+        };
+
     }
 }

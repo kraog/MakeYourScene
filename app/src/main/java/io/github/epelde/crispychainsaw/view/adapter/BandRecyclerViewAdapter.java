@@ -15,12 +15,14 @@ import io.github.epelde.crispychainsaw.viewmodel.BandItemViewModel;
 /**
  * Created by epelde on 20/04/2016.
  */
-public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerViewAdapter.BandViewHolder> {
+public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerViewAdapter.BandViewHolder> implements BandItemViewModel.BandItemListener{
 
     private List<Band> bandList;
+    private BandRecyclerViewListener brvl;
 
-    public BandRecyclerViewAdapter(List<Band> list) {
+    public BandRecyclerViewAdapter(List<Band> list, BandRecyclerViewListener brvl) {
         bandList = list;
+        this.brvl = brvl;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerVi
 
     @Override
     public void onBindViewHolder(BandViewHolder holder, int position) {
-        holder.getBinding().setBandDetailVM(new BandItemViewModel(bandList.get(position)));
+        holder.getBinding().setBandItemVM(new BandItemViewModel(bandList.get(position),this));
     }
 
     @Override
@@ -52,4 +54,11 @@ public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerVi
             return this.binding;
         }
     }
+
+    public interface BandRecyclerViewListener{
+        public void onItemClickedSuperior(Band band);
+    }
+
+    @Override
+    public void onItemClicked(Band band){brvl.onItemClickedSuperior(band);}
 }
