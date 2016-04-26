@@ -5,6 +5,9 @@ import android.databinding.ObservableArrayList;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import javax.inject.Inject;
+
+import io.github.epelde.crispychainsaw.injection.module.DaggerApplicationComponent;
 import io.github.epelde.crispychainsaw.model.data.DataManager;
 import io.github.epelde.crispychainsaw.model.data.DataManagerImpl;
 import io.github.epelde.crispychainsaw.model.domain.Band;
@@ -14,13 +17,15 @@ import io.github.epelde.crispychainsaw.view.adapter.BandRecyclerViewAdapter;
  * Created by epelde on 20/04/2016.
  */
 public class BandListViewModel {
+    @Inject
+    DataManager dm;
 
     public ObservableArrayList<Band> bandList = new ObservableArrayList<Band>();
 
     static BandRecyclerViewAdapter.BandRecyclerViewListener listener;
 
     public BandListViewModel(BandRecyclerViewAdapter.BandRecyclerViewListener listener) {
-        DataManager dm = new DataManagerImpl();
+        DaggerApplicationComponent.create().inject(this);
         bandList.addAll(dm.getBands());
         this.listener = listener;
     }

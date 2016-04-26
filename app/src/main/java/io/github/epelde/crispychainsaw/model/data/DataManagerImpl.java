@@ -1,9 +1,12 @@
 package io.github.epelde.crispychainsaw.model.data;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.github.epelde.crispychainsaw.model.domain.Band;
 
