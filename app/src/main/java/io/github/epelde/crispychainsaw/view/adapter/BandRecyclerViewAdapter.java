@@ -3,6 +3,7 @@ package io.github.epelde.crispychainsaw.view.adapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -56,9 +57,9 @@ public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerVi
     }
 
     public interface BandRecyclerViewListener{
-        public void onItemClickedSuperior(Band band);
+        public void onItemClickedSuperior(View v,Band band);
     }
 
     @Override
-    public void onItemClicked(Band band){brvl.onItemClickedSuperior(band);}
+    public void onItemClicked(View v, Band band){brvl.onItemClickedSuperior(v,band);}
 }

@@ -30,14 +30,14 @@ public class BandItemViewModel {
     }
 
     public interface BandItemListener{
-        public void onItemClicked(Band band);
+        public void onItemClicked(View v,Band band);
     }
 
     public View.OnClickListener getOnClickListener(){
         return new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                bil.onItemClicked(BandItemViewModel.this.band.get());
+                bil.onItemClicked(v,BandItemViewModel.this.band.get());
             }
         };
 

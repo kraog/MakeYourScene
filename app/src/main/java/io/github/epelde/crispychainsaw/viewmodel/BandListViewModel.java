@@ -2,8 +2,12 @@ package io.github.epelde.crispychainsaw.viewmodel;
 
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableArrayList;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
+import android.view.View;
 
 import io.github.epelde.crispychainsaw.model.data.DataManager;
 import io.github.epelde.crispychainsaw.model.data.DataManagerImpl;
@@ -18,6 +22,7 @@ public class BandListViewModel {
     public ObservableArrayList<Band> bandList = new ObservableArrayList<Band>();
 
     static BandRecyclerViewAdapter.BandRecyclerViewListener listener;
+    private BandListViewModelListener mBandListViewModelListener;
 
     public BandListViewModel(BandRecyclerViewAdapter.BandRecyclerViewListener listener) {
         DataManager dm = new DataManagerImpl();
@@ -31,5 +36,21 @@ public class BandListViewModel {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         view.setLayoutManager(layoutManager);
         view.setAdapter(new BandRecyclerViewAdapter(list, listener));
+    }
+
+    public NavigationView.OnNavigationItemSelectedListener getNavItemSelected() {
+       return new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                mBandListViewModelListener.onNavigationItemselectecCompleted(menuItem.getTitle() + " pressed");
+                Snackbar.make(menuItem.getActionView(),menuItem.getTitle() + " pressed" , Snackbar.LENGTH_LONG).show();
+                menuItem.setChecked(true);
+                return true;
+            }
+        };
+    }
+
+    public interface BandListViewModelListener {
+        public void onNavigationItemselectecCompleted(String message);
     }
 }
