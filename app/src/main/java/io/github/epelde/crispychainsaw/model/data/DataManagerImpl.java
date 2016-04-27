@@ -19,7 +19,7 @@ public class DataManagerImpl implements DataManager {
             "Cerebral Fix", "Corrosion of Conformity", "Death Angel",
             "Demolition Hammer", "Gama Bomb", "Gwar", "Havolk"};
 
-    private static final String BAND_IMAGE_URL = "https://source.unsplash.com/450x350/?music,band,concert";
+    private static final String BAND_IMAGE_URL = "http://poprocklaredo.webcindario.com/grupos/akhvan1.jpg";
 
     private static List<Band> bands = new ArrayList<Band>();
 

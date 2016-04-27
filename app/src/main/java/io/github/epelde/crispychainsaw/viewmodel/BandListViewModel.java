@@ -7,13 +7,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
 
 import javax.inject.Inject;
 
-import io.github.epelde.crispychainsaw.injection.module.DaggerApplicationComponent;
+import io.github.epelde.crispychainsaw.di.component.DaggerApplicationComponent;
 import io.github.epelde.crispychainsaw.model.data.DataManager;
-import io.github.epelde.crispychainsaw.model.data.DataManagerImpl;
 import io.github.epelde.crispychainsaw.model.domain.Band;
 import io.github.epelde.crispychainsaw.view.adapter.BandRecyclerViewAdapter;
 

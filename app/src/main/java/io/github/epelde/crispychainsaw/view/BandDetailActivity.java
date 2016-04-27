@@ -40,8 +40,7 @@ public class BandDetailActivity extends AppCompatActivity implements BandDetailV
     private static final String EXTRA_BAND = "io.github.epelde.crispychainsaw.EXTRA_BAND";
     private static final String EXTRA_IMAGE = "io.github.epelde.crispychainsaw.extraImage";
     ActiviyBandDetailBinding binding;
-    Animation slide_down,slide_up,fab_toSongs,fab_toDetail;
-    private View.OnClickListener toSongsListener,toPropertiesListener;
+    Animation slide_down,slide_up;
 
 
 
@@ -49,7 +48,7 @@ public class BandDetailActivity extends AppCompatActivity implements BandDetailV
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Band band = (Band) getIntent().getSerializableExtra(EXTRA_BAND);
-        BandDetailViewModel bandDetailVM = new BandDetailViewModel(band,this);
+        BandDetailViewModel bandDetailVM = new BandDetailViewModel(band,this,this.getApplicationContext());
         binding = DataBindingUtil.setContentView(this, R.layout.activiy_band_detail);
         binding.setBandDetailVM(bandDetailVM);
 
@@ -60,54 +59,16 @@ public class BandDetailActivity extends AppCompatActivity implements BandDetailV
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         binding.collapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
-
-
-        toSongsListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.layoutBotones.startAnimation(slide_down);
-                binding.layoutSongs.startAnimation(slide_up);
-                binding.layoutSongs.setVisibility(View.VISIBLE);
-                binding.layoutBotones.setVisibility(View.INVISIBLE);
-                binding.fab.setOnClickListener(toPropertiesListener);
-                binding.fab.startAnimation(fab_toSongs);
-                binding.fab.setImageResource(R.drawable.ic_favorite_black_24dp);
-                ((CoordinatorLayout.LayoutParams)binding.fab.getLayoutParams()).anchorGravity=Gravity.END|Gravity.BOTTOM|Gravity.LEFT;
-            }
-        };
-        toPropertiesListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.layoutSongs.startAnimation(slide_down);
-                binding.layoutBotones.startAnimation(slide_up);
-                binding.layoutBotones.setVisibility(View.VISIBLE);
-                binding.layoutSongs.setVisibility(View.INVISIBLE);
-                binding.fab.setOnClickListener(toSongsListener);
-                binding.fab.startAnimation(fab_toDetail);
-                binding.fab.setImageResource(R.drawable.ic_settings_black_24dp);
-                ((CoordinatorLayout.LayoutParams)binding.fab.getLayoutParams()).anchorGravity=Gravity.END|Gravity.BOTTOM|Gravity.RIGHT;
-            }
-        };
-        binding.fab.setOnClickListener(toSongsListener);
-
         slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_out_bottom);
 
         slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_in_bottom);
-
-        fab_toSongs = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.fabbutton_to_songs);
-
-        fab_toDetail = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.fabbutton_to_details);
     }
 
 
     public static void navigate(AppCompatActivity activity,View trantistionImage, Band band) {
         Intent intent = new Intent(activity, BandDetailActivity.class);
-        //intent.putExtra(EXTRA_IMAGE, band.getImageUrl());
-        //intent.putExtra(EXTRA_TITLE, band.getName());
         intent.putExtra(EXTRA_BAND, band);
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, trantistionImage, EXTRA_IMAGE);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
@@ -130,6 +91,21 @@ public class BandDetailActivity extends AppCompatActivity implements BandDetailV
         binding.collapsingToolbar.setStatusBarScrimColor(palette.getDarkMutedColor(primaryDark));
         updateBackground((FloatingActionButton) findViewById(R.id.fab), palette);
         supportStartPostponedEnterTransition();
+    }
+
+    @Override
+    public void onFabListenerClicked(boolean detail) {
+        if(detail){
+            binding.layoutBotones.startAnimation(slide_down);
+            binding.layoutSongs.startAnimation(slide_up);
+            binding.layoutSongs.setVisibility(View.VISIBLE);
+            binding.layoutBotones.setVisibility(View.INVISIBLE);
+        } else {
+            binding.layoutBotones.startAnimation(slide_up);
+            binding.layoutSongs.startAnimation(slide_down);
+            binding.layoutSongs.setVisibility(View.INVISIBLE);
+            binding.layoutBotones.setVisibility(View.VISIBLE);
+        }
     }
 
     private void updateBackground(FloatingActionButton fab, Palette palette) {
