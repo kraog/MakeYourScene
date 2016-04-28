@@ -57,6 +57,7 @@ public class BandListViewModel {
         view.setLayoutManager(layoutManager);
         view.setHasFixedSize(true);
         view.setAdapter(new MenuRecyclerViewAdapter(header,menuItemList,mListener));
+        layoutManager.setMeasuredDimension(100,100);
     }
 
     public NavigationView.OnNavigationItemSelectedListener getNavItemSelected() {

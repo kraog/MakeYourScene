@@ -48,15 +48,16 @@
 
         </android.support.design.widget.CoordinatorLayout>
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/RecyclerView"
+            android:id="@+id/menuDrawer"
             android:layout_width="320dp"
-            android:layout_height="match_parent"
+            android:layout_height="400dp"
             android:layout_gravity="left"
 
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="@drawable/menu_shape"
             android:scrollbars="vertical"
             bind:itemmenu="@{bandListVM.menuItemList}"
-            app:header="@{bandListVM.header}"/>
+            app:header="@{bandListVM.header}" />
 
 
 </android.support.v4.widget.DrawerLayout>

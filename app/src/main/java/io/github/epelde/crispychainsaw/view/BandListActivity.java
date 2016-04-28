@@ -68,7 +68,7 @@ public class BandListActivity extends AppCompatActivity implements BandRecyclerV
         final ActionBar actionBar = getSupportActionBar();
 
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.metal_fb);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }

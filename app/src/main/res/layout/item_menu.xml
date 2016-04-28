@@ -4,12 +4,12 @@
         name="MenuItemVM"
         type="io.github.epelde.crispychainsaw.viewmodel.MenuItemViewModel"/></data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
     <ImageView
@@ -24,9 +24,9 @@
         android:layout_height="wrap_content"
         android:paddingLeft="12dp"
         android:paddingTop="4dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:text="Medium Text"
-        android:id="@+id/rowText" />
+        android:id="@+id/rowText"/>
 
 </LinearLayout>
 </layout>
