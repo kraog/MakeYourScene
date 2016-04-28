@@ -24,6 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                bind:items="@{bandListVM.bandList}"/>
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
@@ -40,13 +45,8 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            bind:items="@{bandListVM.bandList}"/>
-
         </android.support.design.widget.CoordinatorLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/menuDrawer"
             android:layout_width="320dp"
