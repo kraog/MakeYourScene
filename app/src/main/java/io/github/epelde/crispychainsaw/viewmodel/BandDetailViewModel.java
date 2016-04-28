@@ -53,11 +53,11 @@ public class BandDetailViewModel {
                 FloatingActionButton fab = (FloatingActionButton) v;
                 if(detail){
                     fab.startAnimation(fab_toSongs);
-                    fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+                    fab.setImageResource(R.drawable.metal_right);
                     anchorGravity.set(Gravity.END|Gravity.BOTTOM|Gravity.LEFT);
                 } else {
                     fab.startAnimation(fab_toDetail);
-                    fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+                    fab.setImageResource(R.drawable.metal_stop);
                     anchorGravity.set(Gravity.END|Gravity.BOTTOM|Gravity.RIGHT);
                 }
                 mBandDetailViewModelListener.onFabListenerClicked(detail);

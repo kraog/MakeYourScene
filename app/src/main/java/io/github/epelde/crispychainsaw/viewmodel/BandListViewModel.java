@@ -55,6 +55,7 @@ public class BandListViewModel {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         view.setLayoutManager(layoutManager);
+        view.setHasFixedSize(true);
         view.setAdapter(new MenuRecyclerViewAdapter(header,menuItemList,mListener));
     }
 

@@ -31,12 +31,6 @@ import io.github.epelde.crispychainsaw.viewmodel.BandListViewModel;
 public class BandListActivity extends AppCompatActivity implements BandRecyclerViewAdapter.BandRecyclerViewListener, BandListViewModel.BandListViewModelListener, MenuRecyclerViewAdapter.MenuRecyclerViewListener {
 
     ActivityBandListBinding binding;
-    String TITLES[] = {"Home","Events","Mail","Shop","Travel"};
-    int ICONS[] = {R.drawable.ic_add_black,R.drawable.ic_favorite_black_24dp,R.drawable.ic_menu_black_24dp,R.drawable.ic_home_black_24dp,R.drawable.ic_settings_black_24dp};
-
-    String NAME = "Akash Bangad";
-    String EMAIL = "akash.bangad@android4devs.com";
-    int PROFILE = R.drawable.euskobands_ico;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,49 +38,22 @@ public class BandListActivity extends AppCompatActivity implements BandRecyclerV
         binding = DataBindingUtil.setContentView(this, R.layout.activity_band_list);
         binding.setBandListVM(new BandListViewModel(this,this,this));
         initToolbar();
-
-        DrawerLayout Drawer;
         ActionBarDrawerToggle mDrawerToggle;
-
-       /* RecyclerView menuRecycler;
-        MenuRecyclerViewAdapter mAdapter;
-        RecyclerView.LayoutManager mLayoutManager;
-        menuRecycler = (RecyclerView) findViewById(R.id.RecyclerView);
-
-        menuRecycler.setHasFixedSize(true);
-
-        mAdapter = new MenuRecyclerViewAdapter(new Header(),new ArrayList<MenuDrawerItem>());       // Creating the Adapter of MyAdapter class(which we are going to see in a bit)
-
-        menuRecycler.setAdapter(mAdapter);
-
-        mLayoutManager = new LinearLayoutManager(this);
-
-        menuRecycler.setLayoutManager(mLayoutManager);*/
-
-
-        Drawer = (DrawerLayout) findViewById(R.id.drawer_layout);        // Drawer object Assigned to the view
-        mDrawerToggle = new ActionBarDrawerToggle(this,Drawer,binding.toolbar,R.string.app_name,R.string.favourite){
+        mDrawerToggle = new ActionBarDrawerToggle(this,binding.drawerLayout,binding.toolbar,R.string.app_name,R.string.favourite){
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
-                // open I am not going to put anything here)
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                // Code here will execute once drawer is closed
             }
 
-
-
-        }; // Drawer Toggle Object Made
-        Drawer.setDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
-        mDrawerToggle.syncState();               // Finally we set the drawer toggle sync State
-
-
+        };
+        binding.drawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
     }
 
 

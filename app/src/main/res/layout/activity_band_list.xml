@@ -28,8 +28,7 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#846666"
-            style="@style/Base.Widget.AppCompat.ActionBar">
+            style="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -37,7 +36,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways"
-                style="@style/Base.ThemeOverlay.AppCompat.ActionBar" />
+                style="@style/ThemeOverlay.AppCompat.Light" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -48,20 +47,13 @@
             bind:items="@{bandListVM.bandList}"/>
 
         </android.support.design.widget.CoordinatorLayout>
-  <!--   <android.support.design.widget.NavigationView
-        android:id="@+id/navigation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:menu="@menu/drawer"
-        app:setNavigationItemSelectedListener="@{bandListVM.getNavItemSelected}" /> -->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/RecyclerView"
             android:layout_width="320dp"
             android:layout_height="match_parent"
             android:layout_gravity="left"
 
-            android:background="#ffffff"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:scrollbars="vertical"
             bind:itemmenu="@{bandListVM.menuItemList}"
             app:header="@{bandListVM.header}"/>
