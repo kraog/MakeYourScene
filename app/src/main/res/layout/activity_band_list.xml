@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".MainActivity">
+        tools:context=".view.BandListActivity">
 
 
         <android.support.design.widget.CoordinatorLayout
@@ -48,14 +48,24 @@
             bind:items="@{bandListVM.bandList}"/>
 
         </android.support.design.widget.CoordinatorLayout>
-    <android.support.design.widget.NavigationView
+  <!--   <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer"
-        app:setNavigationItemSelectedListener="@{bandListVM.getNavItemSelected}"/>
+        app:setNavigationItemSelectedListener="@{bandListVM.getNavItemSelected}" /> -->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/RecyclerView"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+
+            android:background="#ffffff"
+            android:scrollbars="vertical"
+            bind:itemmenu="@{bandListVM.menuItemList}"
+            app:header="@{bandListVM.header}"/>
+
 
 </android.support.v4.widget.DrawerLayout>
 
