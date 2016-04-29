@@ -90,9 +90,7 @@
                                 android:background="@drawable/boton_chulo"
                                 android:drawableLeft="@android:drawable/sym_action_chat"
                                 style="@style/ButtonText"
-                                android:textColor="#a6a4a4">
-
-                            </Button>
+                                android:textColor="#a6a4a4"></Button>
                             <Button
                                 android:text="Próximos Conciertos"
                                 android:id="@+id/buttonConcerts"

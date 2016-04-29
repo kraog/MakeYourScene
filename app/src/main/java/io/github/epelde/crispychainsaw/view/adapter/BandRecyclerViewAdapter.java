@@ -1,6 +1,7 @@
 package io.github.epelde.crispychainsaw.view.adapter;
 
 import android.databinding.DataBindingUtil;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,21 @@ public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerVi
         public BandViewHolder(ItemBandBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+
+            this.binding.getRoot().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        // run scale animation and make it bigger
+
+                        ViewCompat.setElevation(BandViewHolder.this.binding.getRoot(), 30);
+                    } else {
+                        // run scale animation and make it smaller
+
+                        ViewCompat.setElevation(BandViewHolder.this.binding.getRoot(), 0);
+                    }
+                }
+            });
         }
 
         public ItemBandBinding getBinding() {

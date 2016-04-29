@@ -7,15 +7,23 @@
             type="io.github.epelde.crispychainsaw.viewmodel.BandItemViewModel"/>
     </data>
     <FrameLayout
+        android:id="@+id/item_band_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/item_shape"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/spacing_xsmall"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:foreground="?android:attr/selectableItemBackground">
 
             <ImageView

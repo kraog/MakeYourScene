@@ -33,15 +33,17 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:alpha="0.5">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:title="@string/app_name"
                 app:layout_scrollFlags="scroll|enterAlways"
-                style="@style/ThemeOverlay.AppCompat.Light" />
+                android:background="@color/bright_foreground_disabled_material_dark"
+                android:foreground="@color/bright_foreground_disabled_material_dark"
+                android:alpha="0.5" />
 
         </android.support.design.widget.AppBarLayout>
 

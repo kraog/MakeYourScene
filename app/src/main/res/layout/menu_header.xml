@@ -5,11 +5,14 @@
         type="io.github.epelde.crispychainsaw.viewmodel.MenuHeaderViewModel"/></data>
         
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="172dp"
     android:orientation="vertical"
     android:paddingTop="@dimen/status_bar_height"
+    android:clipChildren = "false"
+    android:cropToPadding="false"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:paddingLeft="12dp">
 
@@ -20,6 +23,21 @@
         android:layout_margin="@dimen/spacing_large"
         android:elevation="4dp"
         tools:src="@drawable/ic_launcher"/>
+
+    <!--  Intento de imagen de levita para arrastrar el menu
+    <ImageView
+        android:id="@+id/levita"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/common_full_open_on_phone"
+        android:paddingLeft="60dp"
+        app:layout_anchor="@layout/menu_header"
+        app:layout_anchorGravity="right"
+        android:scaleType="center"
+        android:elevation="8dp"
+        android:baselineAlignBottom="false"
+        android:adjustViewBounds="false"
+        android:layout_alignParentEnd="true" /> -->
 
     <TextView
         android:layout_width="wrap_content"
