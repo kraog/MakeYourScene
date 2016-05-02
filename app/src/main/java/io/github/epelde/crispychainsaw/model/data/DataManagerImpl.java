@@ -26,7 +26,7 @@ public class DataManagerImpl implements DataManager {
     static {
         int i = 0;
         for (String name : BAND_NAMES) {
-            bands.add(new Band(Integer.toString(i), name, BAND_IMAGE_URL));
+            bands.add(new Band(i, name, BAND_IMAGE_URL));
             ++i;
         }
     }

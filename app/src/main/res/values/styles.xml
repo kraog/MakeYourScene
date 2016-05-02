@@ -44,6 +44,11 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">2</item>
     </style>
+    <style name="toolbar_white_translucid">
+        <item name="android:background">#ffffff</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="searchViewStyle">@style/Widget.AppCompat.SearchView.ActionBar</item>
+    </style>
 
     <color name="primary">#000000</color>
     <color name="primary_dark">#000000</color>
