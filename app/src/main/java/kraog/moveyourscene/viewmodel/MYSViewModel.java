@@ -9,5 +9,5 @@ import kraog.moveyourscene.model.data.DataManager;
  */
 public class MYSViewModel {
     @Inject
-    DataManager dm;
+    public DataManager dm;
 }

@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import kraog.moveyourscene.R;
-import kraog.moveyourscene.databinding.ItemBandBinding;
+import kraog.moveyourscene.databinding.BandItemBinding;
 import kraog.moveyourscene.model.domain.Band;
-import kraog.moveyourscene.viewmodel.BandItemVM;
+import kraog.moveyourscene.viewmodel.bands.BandItemVM;
 
 /**
  * Created by epelde on 20/04/2016.
@@ -29,8 +29,8 @@ public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerVi
 
     @Override
     public BandViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ItemBandBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.item_band, parent, false);
+        BandItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.band_item, parent, false);
         return new BandViewHolder(binding);
     }
 
@@ -45,9 +45,9 @@ public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerVi
     }
 
     public class BandViewHolder extends RecyclerView.ViewHolder {
-        private ItemBandBinding binding;
+        private BandItemBinding binding;
 
-        public BandViewHolder(ItemBandBinding binding) {
+        public BandViewHolder(BandItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
 
@@ -67,7 +67,7 @@ public class BandRecyclerViewAdapter extends RecyclerView.Adapter<BandRecyclerVi
             });
         }
 
-        public ItemBandBinding getBinding() {
+        public BandItemBinding getBinding() {
             return this.binding;
         }
     }

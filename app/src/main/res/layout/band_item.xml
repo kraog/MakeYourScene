@@ -4,7 +4,7 @@
     <data>
         <variable
             name="bandItemVM"
-            type="kraog.moveyourscene.viewmodel.BandItemVM"/>
+            type="kraog.moveyourscene.viewmodel.bands.BandItemVM"/>
     </data>
     <FrameLayout
         android:id="@+id/item_band_layout"

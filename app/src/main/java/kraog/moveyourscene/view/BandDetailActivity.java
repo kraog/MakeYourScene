@@ -6,7 +6,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
@@ -17,9 +16,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import kraog.moveyourscene.R;
-import kraog.moveyourscene.databinding.ActiviyBandDetailBinding;
+import kraog.moveyourscene.databinding.BandDetailActivityBinding;
 import kraog.moveyourscene.model.domain.Band;
-import kraog.moveyourscene.viewmodel.BandDetailVM;
+import kraog.moveyourscene.viewmodel.bands.BandDetailVM;
 
 /**
  * Created by epelde on 21/04/2016.
@@ -28,7 +27,7 @@ public class BandDetailActivity extends AppCompatActivity implements BandDetailV
 
     private static final String EXTRA_BAND = "kraog.moveyourscene.EXTRA_BAND";
     private static final String EXTRA_IMAGE = "kraog.moveyourscene.extraImage";
-    ActiviyBandDetailBinding binding;
+    BandDetailActivityBinding binding;
     Animation slide_down,slide_up;
 
 
@@ -38,7 +37,7 @@ public class BandDetailActivity extends AppCompatActivity implements BandDetailV
         super.onCreate(savedInstanceState);
         Band band = (Band) getIntent().getSerializableExtra(EXTRA_BAND);
         BandDetailVM bandDetailVM = new BandDetailVM(band,this,this.getApplicationContext());
-        binding = DataBindingUtil.setContentView(this, R.layout.activiy_band_detail);
+        binding = DataBindingUtil.setContentView(this, R.layout.band_detail_activity);
         binding.setBandDetailVM(bandDetailVM);
 
         ViewCompat.setTransitionName(binding.appBarLayout, EXTRA_IMAGE);

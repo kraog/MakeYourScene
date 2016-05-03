@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,12 +17,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import kraog.moveyourscene.R;
-import kraog.moveyourscene.databinding.ActivityBandListBinding;
+import kraog.moveyourscene.databinding.BandListActivityBinding;
 import kraog.moveyourscene.model.domain.Band;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 import kraog.moveyourscene.view.adapter.BandRecyclerViewAdapter;
 import kraog.moveyourscene.view.adapter.MenuRecyclerViewAdapter;
-import kraog.moveyourscene.viewmodel.BandListVM;
+import kraog.moveyourscene.viewmodel.bands.BandListVM;
 
 /**
  * Created by epelde on 20/04/2016.
@@ -31,7 +30,7 @@ import kraog.moveyourscene.viewmodel.BandListVM;
 public class BandListActivity extends AppCompatActivity implements BandRecyclerViewAdapter.BandRecyclerViewListener, BandListVM.BandListViewModelListener, MenuRecyclerViewAdapter.MenuRecyclerViewListener {
 
     private static final String EXTRA_BAND_FILTER = "kraog.moveyourscene.EXTRA_BAND_FILTER";
-    ActivityBandListBinding binding;
+    BandListActivityBinding binding;
 
 
     public static void navigate(AppCompatActivity activity,View trantistionImage, Band bandFilter) {
@@ -45,7 +44,7 @@ public class BandListActivity extends AppCompatActivity implements BandRecyclerV
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         Band bandFilter = (Band)intent.getSerializableExtra(EXTRA_BAND_FILTER);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_band_list);
+        binding = DataBindingUtil.setContentView(this, R.layout.band_list_activity);
         binding.setBandListVM(new BandListVM(this,this,this,bandFilter));
         initToolbar();
         initTabs();

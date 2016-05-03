@@ -6,7 +6,7 @@
     <data>
         <variable
             name="bandDetailVM"
-            type="kraog.moveyourscene.viewmodel.BandDetailVM" />
+            type="kraog.moveyourscene.viewmodel.bands.BandDetailVM" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout

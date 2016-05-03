@@ -7,7 +7,7 @@
     <data>
         <variable
             name="bandListVM"
-            type="kraog.moveyourscene.viewmodel.BandListVM" />
+            type="kraog.moveyourscene.viewmodel.bands.BandListVM" />
     </data>
 
 

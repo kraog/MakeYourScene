@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import kraog.moveyourscene.R;
-import kraog.moveyourscene.databinding.ItemMenuBinding;
 import kraog.moveyourscene.databinding.MenuHeaderBinding;
+import kraog.moveyourscene.databinding.MenuItemBinding;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 import kraog.moveyourscene.model.domain.User;
 import kraog.moveyourscene.viewmodel.MenuHeaderVM;
@@ -37,7 +37,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_ITEM) {
-            ItemMenuBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_menu,parent,false);
+            MenuItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.menu_item,parent,false);
             MenuItemViewHolder vhItem = new MenuItemViewHolder(binding);
             return vhItem;
         } else if (viewType == TYPE_HEADER) {
@@ -85,9 +85,9 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public class MenuItemViewHolder extends RecyclerView.ViewHolder{
-        public ItemMenuBinding binding;
+        public MenuItemBinding binding;
 
-        public MenuItemViewHolder(ItemMenuBinding binding) {
+        public MenuItemViewHolder(MenuItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

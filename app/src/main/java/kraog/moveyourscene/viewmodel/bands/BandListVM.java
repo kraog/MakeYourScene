@@ -1,4 +1,4 @@
-package kraog.moveyourscene.viewmodel;
+package kraog.moveyourscene.viewmodel.bands;
 
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableArrayList;
@@ -18,11 +18,12 @@ import kraog.moveyourscene.model.domain.Preference;
 import kraog.moveyourscene.model.domain.User;
 import kraog.moveyourscene.view.adapter.BandRecyclerViewAdapter;
 import kraog.moveyourscene.view.adapter.MenuRecyclerViewAdapter;
+import kraog.moveyourscene.viewmodel.MYSViewModel;
 
 /**
  * Created by epelde on 20/04/2016.
  */
-public class BandListVM extends MYSViewModel{
+public class BandListVM extends MYSViewModel {
 
     public ObservableArrayList<Band> bandList = new ObservableArrayList<Band>();
     public static ObservableField<User> user = new ObservableField<User>();

@@ -1,4 +1,4 @@
-package kraog.moveyourscene.viewmodel;
+package kraog.moveyourscene.viewmodel.bands;
 
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
