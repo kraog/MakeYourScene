@@ -7,7 +7,7 @@
     <data>
         <variable
             name="bandListVM"
-            type="io.github.epelde.crispychainsaw.viewmodel.BandListViewModel" />
+            type="kraog.moveyourscene.viewmodel.BandListVM" />
     </data>
 
 
@@ -41,7 +41,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:title="@string/app_name"
-                app:layout_scrollFlags="scroll|enterAlways"/>
+                app:layout_scrollFlags="scroll|enterAlways" />
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:onTabSelectedListener="@{bandListVM.getTabListener}"/>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -57,7 +62,7 @@
             android:background="@drawable/menu_shape"
             android:scrollbars="vertical"
             bind:itemmenu="@{bandListVM.menuItemList}"
-            app:header="@{bandListVM.header}" />
+            app:user="@{bandListVM.user}" />
 
 
 </android.support.v4.widget.DrawerLayout>

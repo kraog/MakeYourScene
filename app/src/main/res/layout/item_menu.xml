@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data><variable
-        name="MenuItemVM"
-        type="io.github.epelde.crispychainsaw.viewmodel.MenuItemViewModel"/></data>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        name="menuItemVM"
+        type="kraog.moveyourscene.viewmodel.MenuItemVM"/></data>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    app:onClickListener="@{menuItemVM.setMListener}">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/rowIcon"
+        android:id="@+id/menuIcon"
         android:paddingLeft="16dp"
-        android:src="@drawable/ic_launcher"/>
+        bind:menuItemImage="@{menuItemVM.menuDrawerItem.imageResource}"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,8 +28,8 @@
         android:paddingLeft="12dp"
         android:paddingTop="4dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:text="Medium Text"
-        android:id="@+id/rowText"/>
+        android:text="@{menuItemVM.menuDrawerItem.title}"
+        android:id="@+id/menuTitle"/>
 
 </LinearLayout>
 </layout>

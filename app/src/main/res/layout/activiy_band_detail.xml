@@ -6,7 +6,7 @@
     <data>
         <variable
             name="bandDetailVM"
-            type="io.github.epelde.crispychainsaw.viewmodel.BandDetailViewModel" />
+            type="kraog.moveyourscene.viewmodel.BandDetailVM" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -33,7 +33,7 @@
                 app:expandedTitleMarginEnd="64dp"
                 android:fitsSystemWindows="true">
 
-                <io.github.epelde.crispychainsaw.widgets.SquareImageView
+                <kraog.moveyourscene.widgets.SquareImageView
                     android:id="@+id/image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="bandItemVM"
-            type="io.github.epelde.crispychainsaw.viewmodel.BandItemViewModel"/>
+            type="kraog.moveyourscene.viewmodel.BandItemVM"/>
     </data>
     <FrameLayout
         android:id="@+id/item_band_layout"

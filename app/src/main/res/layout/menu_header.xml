@@ -2,11 +2,10 @@
 <layout>
     <data><variable
         name="headerMenuVM"
-        type="io.github.epelde.crispychainsaw.viewmodel.MenuHeaderViewModel"/></data>
+        type="kraog.moveyourscene.viewmodel.MenuHeaderVM"/></data>
         
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="172dp"
     android:orientation="vertical"
@@ -22,7 +21,8 @@
         android:layout_height="64dp"
         android:layout_margin="@dimen/spacing_large"
         android:elevation="4dp"
-        tools:src="@drawable/ic_launcher"/>
+        bind:menuItemImage="@{headerMenuVM.user.preferences.url_photo}"
+        />
 
     <!--  Intento de imagen de levita para arrastrar el menu
     <ImageView
@@ -45,7 +45,7 @@
         android:layout_above="@+id/email"
         android:layout_marginLeft="@dimen/spacing_large"
         android:layout_marginStart="@dimen/spacing_large"
-        android:text="Username"
+        android:text="@{headerMenuVM.user.name}"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
     <TextView
         android:id="@+id/email"
@@ -55,7 +55,7 @@
         android:layout_marginLeft="@dimen/spacing_large"
         android:layout_marginStart="@dimen/spacing_large"
         android:layout_marginBottom="@dimen/spacing_large"
-        android:text="username@mymail.com"
+        android:text="@{headerMenuVM.user.mail}"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </RelativeLayout>
