@@ -97,8 +97,8 @@ public class BandDetailActivity extends AppCompatActivity implements BandDetailV
     }
 
     private void updateBackground(FloatingActionButton fab, Palette palette) {
-        int lightVibrantColor = palette.getLightVibrantColor(getResources().getColor(android.R.color.white));
-        int vibrantColor = palette.getVibrantColor(getResources().getColor(R.color.accent));
+        int lightVibrantColor = palette.getLightVibrantColor(getResources().getColor(android.R.color.black));
+        int vibrantColor = palette.getVibrantColor(getResources().getColor(R.color.colorPrimaryDark));
         fab.setRippleColor(lightVibrantColor);
         fab.setBackgroundTintList(ColorStateList.valueOf(vibrantColor));
     }

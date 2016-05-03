@@ -68,7 +68,7 @@ public class BandListActivity extends AppCompatActivity implements BandRecyclerV
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.metal_fb);
+            actionBar.setHomeAsUpIndicator(R.drawable.rock_gesture);
         }
     }
 
@@ -77,9 +77,9 @@ public class BandListActivity extends AppCompatActivity implements BandRecyclerV
      */
     private void initTabs()
     {
-        binding.tabs.addTab(binding.tabs.newTab().setIcon(R.drawable.ic_favorite_black_24dp));
-        binding.tabs.addTab(binding.tabs.newTab().setIcon(R.drawable.ic_home_black_24dp));
-        binding.tabs.addTab(binding.tabs.newTab().setIcon(R.drawable.ic_settings_black_24dp));
+        binding.tabs.addTab(binding.tabs.newTab().setIcon(R.drawable.layers_icon));
+        binding.tabs.addTab(binding.tabs.newTab().setIcon(R.drawable.plain_heart));
+        binding.tabs.addTab(binding.tabs.newTab().setIcon(R.drawable.sharing_interface));
         binding.tabs.setTabGravity(TabLayout.GRAVITY_FILL);
     }
 

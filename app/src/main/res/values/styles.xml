@@ -15,7 +15,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/spacing_large</item>
-        <item name="android:src">@drawable/metal_right</item>
+        <item name="android:src">@drawable/vinyl60</item>
         <item name="borderWidth">0dp</item>
         <item name="elevation">6dp</item>
         <item name="pressedTranslationZ">12dp</item>
@@ -26,7 +26,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/spacing_large</item>
-        <item name="android:src">@drawable/metal_stop</item>
+        <item name="android:src">@drawable/play60</item>
         <item name="borderWidth">0dp</item>
         <item name="elevation">6dp</item>
         <item name="pressedTranslationZ">12dp</item>
@@ -52,7 +52,7 @@
 
     <color name="primary">#000000</color>
     <color name="primary_dark">#000000</color>
-    <color name="accent">#FFEB3B</color>
-    <color name="accent_translucent">#80FFEB3B</color>
-    <color name="accent_bright">#FFF493</color>
+    <color name="accent">#000000</color>
+    <color name="accent_translucent">#000000</color>
+    <color name="accent_bright">#000000</color>
 </resources>
