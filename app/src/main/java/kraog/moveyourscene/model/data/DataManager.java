@@ -14,7 +14,7 @@ public interface DataManager {
 
     public List<Band> getBands();
 
-    public List<Band> getBands(Band filter);
+    public List<Band> getBands(@NonNull final Band filter);
 
     public Band getBand(@NonNull String id);
 }

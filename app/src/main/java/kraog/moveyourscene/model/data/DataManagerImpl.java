@@ -1,7 +1,6 @@
 package kraog.moveyourscene.model.data;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -10,7 +9,6 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
 
 import kraog.moveyourscene.model.domain.Band;
 
@@ -49,7 +47,7 @@ public class DataManagerImpl implements DataManager {
     @Override
     public List<Band> getBands(final Band filter)
     {
-        Predicate<Band> pred = new Predicate<Band>() {
+      /*  Predicate<Band> pred = new Predicate<Band>() {
             @Override
             public boolean apply(Band band) {
                 boolean matched = true;
@@ -66,6 +64,7 @@ public class DataManagerImpl implements DataManager {
             }
         };
         pred.apply(filter);
-        return Lists.newArrayList(Collections2.filter(bands,pred));
+        return Lists.newArrayList(Collections2.filter(bands,null));*/
+        return bands;
     }
 }
