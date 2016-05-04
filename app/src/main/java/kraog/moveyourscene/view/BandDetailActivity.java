@@ -26,7 +26,7 @@ import kraog.moveyourscene.viewmodel.bands.BandDetailVM;
 public class BandDetailActivity extends AppCompatActivity implements BandDetailVM.BandDetailViewModelListener{
 
     private static final String EXTRA_BAND = "kraog.moveyourscene.EXTRA_BAND";
-    private static final String EXTRA_IMAGE = "kraog.moveyourscene.extraImage";
+    private static final String EXTRA_IMAGE = "kraog.moveyourscene.EXTRA_IMAGE";
     BandDetailActivityBinding binding;
     Animation slide_down,slide_up;
 

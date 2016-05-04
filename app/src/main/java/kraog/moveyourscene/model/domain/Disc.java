@@ -10,11 +10,17 @@ public class Disc {
     private int id;
     private int id_band;
     private int id_studio;
+    private String name;
     private Date date_creation;
     private Date date_start;
     private Date date_end;
     private String imageUrl;
 
+    public Disc(int id_band, String name , String imageUrl){
+        this.id_band=id_band;
+        this.name=name;
+        this.imageUrl=imageUrl;
+    }
 
     public int getId() {
         return id;
@@ -70,5 +76,13 @@ public class Disc {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

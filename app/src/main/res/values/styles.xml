@@ -50,9 +50,9 @@
         <item name="searchViewStyle">@style/Widget.AppCompat.SearchView.ActionBar</item>
     </style>
 
-    <color name="primary">#000000</color>
+    <color name="primary">#ffffff</color>
     <color name="primary_dark">#000000</color>
     <color name="accent">#000000</color>
     <color name="accent_translucent">#000000</color>
-    <color name="accent_bright">#000000</color>
+    <color name="accent_bright">#001000</color>
 </resources>

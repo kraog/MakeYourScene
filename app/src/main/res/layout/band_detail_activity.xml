@@ -47,6 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    android:title="@{bandDetailVM.band.name}"
                     app:layout_collapseMode="pin" />
 
             </android.support.design.widget.CollapsingToolbarLayout>
@@ -175,7 +176,6 @@
             app:onClickListener="@{bandDetailVM.setFabListener}"
             bind:anchorGravity="@{bandDetailVM.anchorGravity}"
             style="@style/FabStyle"
-            android:background="@drawable/fab_background"
             android:scaleType="center"
             android:adjustViewBounds="false"
             android:baselineAlignBottom="false"
