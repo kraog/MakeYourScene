@@ -16,8 +16,18 @@
 
     <!-- Band List-->
 
-    <string name="tab_favourites">Favourites</string>
-    <string name="tab_last">Last added</string>
-    <string name="tab_advanced">Advanced Search</string>
+    <string name="band_title">Bands</string>
+
+    <string name="band_tab_favourites">Favourites</string>
+    <string name="band_tab_last">Last added</string>
+    <string name="band_tab_advanced">Advanced Search</string>
+
+    <!-- Band List-->
+
+    <string name="disc_title">Albums</string>
+
+    <string name="disc_tab_favourites">Favourites</string>
+    <string name="disc_tab_last">Last added</string>
+    <string name="disc_tab_advanced">Advanced Search</string>
 
 </resources>

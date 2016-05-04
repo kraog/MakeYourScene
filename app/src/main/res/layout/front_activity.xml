@@ -24,7 +24,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="40dp"
         android:src="@drawable/music_1"
-        bind:relatedAct="@{frontVM.discAct}"
+        bind:relatedFrontAct="@{frontVM.discAct}"
         android:layout_alignParentEnd="false"
         android:layout_marginLeft="40dp" />
 
@@ -36,7 +36,7 @@
         android:layout_alignParentEnd="true"
         android:src="@drawable/add"
         android:layout_marginRight="40dp"
-        bind:relatedAct="@{frontVM.concertAct}" />
+        bind:relatedFrontAct="@{frontVM.concertAct}" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/checked_1"
         android:layout_marginTop="20dp"
-        bind:relatedAct="@{frontVM.bandAct}" />
+        bind:relatedFrontAct="@{frontVM.bandAct}" />
 
 </RelativeLayout>
 </layout>

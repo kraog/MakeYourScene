@@ -37,7 +37,7 @@ public class DiscRecyclerViewAdapter extends RecyclerView.Adapter<DiscRecyclerVi
 
     @Override
     public void onBindViewHolder(DiscViewHolder holder, int position) {
-        //holder.getBinding().setDiscItemVM(new DiscItemVM(discList.get(position),this));
+        holder.getBinding().setDiscItemVM(new DiscItemVM(discList.get(position),this));
     }
 
     @Override

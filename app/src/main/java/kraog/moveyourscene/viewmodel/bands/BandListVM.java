@@ -16,27 +16,28 @@ import kraog.moveyourscene.model.domain.Band;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 import kraog.moveyourscene.model.domain.Preference;
 import kraog.moveyourscene.model.domain.User;
+import kraog.moveyourscene.util.Funciones;
 import kraog.moveyourscene.view.adapter.BandRecyclerViewAdapter;
 import kraog.moveyourscene.view.adapter.MenuRecyclerViewAdapter;
-import kraog.moveyourscene.viewmodel.MYSViewModel;
+import kraog.moveyourscene.viewmodel.MYSListVM;
 
 /**
  * Created by epelde on 20/04/2016.
  */
-public class BandListVM extends MYSViewModel {
+public class BandListVM extends MYSListVM {
 
     public ObservableArrayList<Band> bandList = new ObservableArrayList<Band>();
-    public static ObservableField<User> user = new ObservableField<User>();
+    public ObservableField<User> user = new ObservableField<User>();
     public ObservableArrayList<MenuDrawerItem> menuItemList  = new ObservableArrayList<MenuDrawerItem>();
 
     static BandRecyclerViewAdapter.BandRecyclerViewListener listener;
-    static MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener;
+    public static MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener;
     private BandListViewModelListener mBandListViewModelListener;
 
     public BandListVM(BandRecyclerViewAdapter.BandRecyclerViewListener listener, MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener, BandListViewModelListener mBandListViewModelListener, Band bandFilter) {
         DaggerApplicationComponent.create().inject(this);
         bandList.addAll(dm.getBands(bandFilter));
-        setStupidData();
+        Funciones.setStupidData(user,menuItemList);
         this.mBandListViewModelListener = mBandListViewModelListener;
         this.listener = listener;
         this.mListener = mListener;
@@ -49,7 +50,8 @@ public class BandListVM extends MYSViewModel {
         view.setLayoutManager(layoutManager);
         view.setAdapter(new BandRecyclerViewAdapter(list, listener));
     }
-    @BindingAdapter(value={"bind:itemmenu","user"}, requireAll = false)
+
+    @BindingAdapter(value={"bind:menuitem","bind:iuser"},requireAll = false)
     public static void bindMenuList(RecyclerView view, ObservableArrayList<MenuDrawerItem> menuItemList, User user) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -70,25 +72,6 @@ public class BandListVM extends MYSViewModel {
         };
     }
 
-    public TabLayout.OnTabSelectedListener getTabListener(){
-
-        return new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int i =0;
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        };
-    }
     private void setStupidData(){
         user.set(new User());
         user.get().setMail("email_cojonudo@gmail.com");
@@ -97,16 +80,19 @@ public class BandListVM extends MYSViewModel {
         pref.setUrl_photo("https://upload.wikimedia.org/wikipedia/commons/0/03/Jacinto_Benavente.jpg");
         user.get().setPreferences(pref);
         MenuDrawerItem mdi = new MenuDrawerItem();
-        mdi.setTitle("Últimos Lanzamientos");
-        mdi.setImageResource(R.drawable.ic_add_black);
+        mdi.setTitle("Bandas");
+        mdi.setImageResource(R.drawable.christian_cross);
+        mdi.setActivity_related(MenuDrawerItem.Activity_Related.BAND_LIST);
         menuItemList.add(mdi);
         MenuDrawerItem mdi2 = new MenuDrawerItem();
-        mdi2.setTitle("Próximos conciertos");
-        mdi2.setImageResource(R.drawable.ic_add_black);
+        mdi2.setTitle("Álbumes");
+        mdi2.setImageResource(R.drawable.music);
+        mdi2.setActivity_related(MenuDrawerItem.Activity_Related.DISC_LIST);
         menuItemList.add(mdi2);
         MenuDrawerItem mdi3 = new MenuDrawerItem();
-        mdi3.setTitle("Últimos Lanzamientos");
-        mdi3.setImageResource(R.drawable.ic_add_black);
+        mdi3.setTitle("Conciertos");
+        mdi3.setImageResource(R.drawable.business);
+        mdi3.setActivity_related(MenuDrawerItem.Activity_Related.CONCERT_LIST);
         menuItemList.add(mdi3);
     }
 

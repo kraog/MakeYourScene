@@ -15,12 +15,13 @@ import kraog.moveyourscene.model.domain.Disc;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 import kraog.moveyourscene.model.domain.Preference;
 import kraog.moveyourscene.model.domain.User;
+import kraog.moveyourscene.util.Funciones;
 import kraog.moveyourscene.view.adapter.DiscRecyclerViewAdapter;
 import kraog.moveyourscene.view.adapter.MenuRecyclerViewAdapter;
-import kraog.moveyourscene.viewmodel.MYSViewModel;
+import kraog.moveyourscene.viewmodel.MYSListVM;
 
 
-public class DiscListVM extends MYSViewModel {
+public class DiscListVM extends MYSListVM {
 
     public ObservableArrayList<Disc> discList = new ObservableArrayList<Disc>();
     public static ObservableField<User> user = new ObservableField<User>();
@@ -33,7 +34,7 @@ public class DiscListVM extends MYSViewModel {
     public DiscListVM(DiscRecyclerViewAdapter.DiscRecyclerViewListener listener, MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener, DiscListViewModelListener mDiscListViewModelListener, Disc discFilter) {
         DaggerApplicationComponent.create().inject(this);
         discList.addAll(dm.getDiscs());
-        setStupidData();
+        Funciones.setStupidData(user,menuItemList);
         this.mDiscListViewModelListener = mDiscListViewModelListener;
         this.listener = listener;
         this.mListener = mListener;
@@ -63,26 +64,6 @@ public class DiscListVM extends MYSViewModel {
                 mDiscListViewModelListener.onNavigationItemSelectecCompleted(menuItem.getTitle() + " pressed",menuItem);
                 menuItem.setChecked(true);
                 return true;
-            }
-        };
-    }
-
-    public TabLayout.OnTabSelectedListener getTabListener(){
-
-        return new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int i =0;
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
             }
         };
     }

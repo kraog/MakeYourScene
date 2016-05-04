@@ -12,7 +12,7 @@ import kraog.moveyourscene.model.domain.MenuDrawerItem;
  * Created by Gorka on 27/04/2016.
  */
 public class MenuItemVM {
-    private MenuItemViewModelListener mMenuItemViewModelListener;
+    private static MenuItemViewModelListener mMenuItemViewModelListener;
     public ObservableField<MenuDrawerItem> menuDrawerItem;
 
     public MenuItemVM(MenuDrawerItem menuDrawerItem, MenuItemViewModelListener mMenuItemViewModelListener) {
@@ -25,13 +25,15 @@ public class MenuItemVM {
     public static void setMenuItemImage(View v, int url){
         //picasso
     }
-    public OnClickListener setMListener() {
-        return new OnClickListener() {
+
+    @BindingAdapter({"bind:relatedAct"})
+    public static void setMListener(View v, final MenuDrawerItem.Activity_Related relatedAct) {
+        v.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-        /*depends on*/ mMenuItemViewModelListener.onMenuItemClicked(menuDrawerItem.get().getActivity_related());
+        mMenuItemViewModelListener.onMenuItemClicked(relatedAct);
             }
-        };
+        });
     }
 
     public interface MenuItemViewModelListener {

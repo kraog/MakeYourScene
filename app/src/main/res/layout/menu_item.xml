@@ -2,7 +2,8 @@
 <layout>
     <data><variable
         name="menuItemVM"
-        type="kraog.moveyourscene.viewmodel.MenuItemVM"/></data>
+        type="kraog.moveyourscene.viewmodel.MenuItemVM"/>
+    <import type="kraog.moveyourscene.model.domain.MenuDrawerItem.Activity_Related"></import></data>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,7 +14,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    app:onClickListener="@{menuItemVM.setMListener}">
+    bind:relatedAct="@{menuItemVM.menuDrawerItem.activity_related}">
 
     <ImageView
         android:layout_width="wrap_content"

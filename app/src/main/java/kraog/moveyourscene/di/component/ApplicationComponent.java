@@ -6,7 +6,7 @@ import dagger.Component;
 
 import kraog.moveyourscene.di.module.ApplicationModule;
 import kraog.moveyourscene.di.module.NetworkModule;
-import kraog.moveyourscene.viewmodel.MYSViewModel;
+import kraog.moveyourscene.viewmodel.MYSListVM;
 
 /**
  * Created by epelde on 26/04/2016.
@@ -14,5 +14,5 @@ import kraog.moveyourscene.viewmodel.MYSViewModel;
 @Singleton
 @Component(modules = {ApplicationModule.class, NetworkModule.class})
 public interface ApplicationComponent {
-    void inject(MYSViewModel vm);
+    void inject(MYSListVM vm);
 }

@@ -40,7 +40,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:title="@string/app_name"
+                android:title="@string/band_title"
                 app:layout_scrollFlags="scroll|enterAlways" />
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
@@ -61,8 +61,8 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:background="@drawable/menu_shape"
             android:scrollbars="vertical"
-            bind:itemmenu="@{bandListVM.menuItemList}"
-            app:user="@{bandListVM.user}" />
+            bind:menuitem="@{bandListVM.menuItemList}"
+            bind:iuser="@{bandListVM.user}"/>
 
 
 </android.support.v4.widget.DrawerLayout>

@@ -23,8 +23,8 @@ public class FrontActivity extends AppCompatActivity implements FrontVM.FrontVML
 
         switch (relatedAct){
             case BAND_LIST:BandListActivity.navigate(this,null,null);break;
+            case DISC_LIST:DiscListActivity.navigate(this,null,null);break;
             //case CONCERT_LIST:initDrawer();break;
-            //case DISC_LIST:initDrawer();break;
         }
     }
 }

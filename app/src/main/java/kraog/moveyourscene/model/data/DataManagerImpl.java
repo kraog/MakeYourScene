@@ -38,6 +38,18 @@ public class DataManagerImpl implements DataManager {
     private static final String[] DISC_NAMES = {"Izeshne 33.4", "Adrenaline", "King for a day, fool for a lifetime",
             "Terraformer", "keeper of the seven keys I", "It's me god",
             "Debasement encarnated", "Wolverine blues", "Escuchame, comprendelo", "Venom"};
+    private static final String[] DISC_PHOTOS = {
+            "http://www.lamiradanegra.com/wp-content/uploads/2014/09/akhvan_izeshne33.4.jpg",
+        "http://media.jukebox.es/a47/articles/ib3146.jpg",
+        "http://www.caratulas.com/caratulas/F/Faith_No_More/Faith_No_More-King_For_A_Day_Fool_For_A_Lifetime-Frontal.jpg",
+    "https://s3.amazonaws.com/mno.products/10174/475050d85d_l.jpg",
+    "https://upload.wikimedia.org/wikipedia/en/8/8b/Keeper_of_the_Seven_Keys_Part_1.jpg",
+    "http://www.boikot.net/wp-content/uploads/2013/11/breachgodCD.jpg",
+    "http://www.shownomercyrecords.com/store_images/Carnivorous%20Voracity%20-%20Debasement%20Incarnated.jpg",
+    "http://www.metal-archives.com/images/6/6.jpg?0454",
+    "https://i.ytimg.com/vi/U7AhL0WysoI/hqdefault.jpg",
+    "http://img.maniadb.com/images/album/186/186202_1_f.jpg"};
+    private static final int[] discband = {2,1,0,9,7,8,3,6,5,8};
 
     private static final String BAND_IMAGE_URL = "http://poprocklaredo.webcindario.com/grupos/akhvan1.jpg";
     private static final String DISC_IMAGE_URL = "http://poprocklaredo.webcindario.com/grupos/akhvan1.jpg";
@@ -53,7 +65,7 @@ public class DataManagerImpl implements DataManager {
         }
         int ii = 0;
         for (String name : DISC_NAMES) {
-            discs.add(new Disc(ii, name, BAND_PHOTOS[ii]));
+            discs.add(new Disc(ii, discband[ii], name, DISC_PHOTOS[ii]));
             ++ii;
         }
     }
@@ -94,7 +106,7 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public List<Disc> getDiscs() {
-        return null;
+        return discs;
     }
 
     @Override

@@ -25,7 +25,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     private static final int TYPE_ITEM = 1;
     public List<MenuDrawerItem> menuList;
     public ObservableField<User> user;
-    public MenuRecyclerViewListener mMenuRecyclerViewListener;
+    public static MenuRecyclerViewListener mMenuRecyclerViewListener;
 
     public MenuRecyclerViewAdapter (User user, List<MenuDrawerItem> menuList, MenuRecyclerViewListener mMenuRecyclerViewListener){
         this.menuList = menuList;
@@ -80,7 +80,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onMenuItemClicked(MenuDrawerItem.Activity_Related relatedAct) {
-        this.mMenuRecyclerViewListener.onMenuItemClicked(relatedAct);
+        mMenuRecyclerViewListener.onMenuItemClicked(relatedAct);
     }
 
     public class MenuItemViewHolder extends RecyclerView.ViewHolder{

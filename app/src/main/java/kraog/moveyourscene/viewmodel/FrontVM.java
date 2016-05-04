@@ -27,7 +27,7 @@ public class FrontVM {
 
     }
 
-    @BindingAdapter({"bind:relatedAct"})
+    @BindingAdapter({"bind:relatedFrontAct"})
     public static void setOnClickListener(View v, final MenuDrawerItem.Activity_Related relatedAct) {
         v.setOnClickListener(new View.OnClickListener() {
             @Override

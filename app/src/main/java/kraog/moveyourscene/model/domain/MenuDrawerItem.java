@@ -5,13 +5,7 @@ package kraog.moveyourscene.model.domain;
  */
 public class MenuDrawerItem {
 
-    public Activity_Related getActivity_related() {
-        return activity_related;
-    }
 
-    public void setActivity_related(Activity_Related activity_related) {
-        this.activity_related = activity_related;
-    }
 
     public enum Activity_Related {BAND_LIST,DISC_LIST,CONCERT_LIST};
     private String title;
@@ -32,5 +26,13 @@ public class MenuDrawerItem {
 
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
+    }
+
+    public Activity_Related getActivity_related() {
+        return activity_related;
+    }
+
+    public void setActivity_related(Activity_Related activity_related) {
+        this.activity_related = activity_related;
     }
 }

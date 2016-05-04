@@ -1,11 +1,12 @@
 package kraog.moveyourscene.model.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Gorka on 02/05/2016.
  */
-public class Disc {
+public class Disc implements Serializable {
 
     private int id;
     private int id_band;
@@ -16,7 +17,8 @@ public class Disc {
     private Date date_end;
     private String imageUrl;
 
-    public Disc(int id_band, String name , String imageUrl){
+    public Disc(int id, int id_band, String name , String imageUrl){
+        this.id = id;
         this.id_band=id_band;
         this.name=name;
         this.imageUrl=imageUrl;

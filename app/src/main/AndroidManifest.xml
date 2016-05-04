@@ -10,13 +10,18 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
+
+        <!-- MYS FRONT-->
         <activity
-            android:name=".view.BandDetailActivity"
-            android:parentActivityName=".view.BandListActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.BandListActivity" />
+            android:name=".view.FrontActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
+        <!-- BAND MODULE-->
         <activity
             android:name=".view.BandListActivity"
             android:parentActivityName=".view.FrontActivity">
@@ -25,14 +30,24 @@
                 android:value=".view.FrontActivity" />
         </activity>
         <activity
-            android:name=".view.FrontActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".view.BandDetailActivity"
+            android:parentActivityName=".view.BandListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.BandListActivity" />
         </activity>
+
+        <!-- DISC MODULE-->
+        <activity
+            android:name=".view.DiscListActivity"
+            android:parentActivityName=".view.FrontActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.FrontActivity" />
+        </activity>
+
+
+
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
