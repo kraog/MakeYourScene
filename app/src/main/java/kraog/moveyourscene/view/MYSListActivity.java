@@ -1,7 +1,10 @@
 package kraog.moveyourscene.view;
 
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -41,11 +44,13 @@ public abstract class MYSListActivity extends AppCompatActivity implements MYSLi
         final ActionBar actionBar = getSupportActionBar();
 
         if (actionBar != null) {
-            actionBar.setLogo(R.drawable.rock_gesture);
             actionBar.setTitle(titleId);
-            actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
+
+    /*
+     * Initiates the up tabs
+     */
     public void initTabs(TabLayout tabber)
     {
         tabber.addTab(tabber.newTab().setIcon(R.drawable.layers_icon).setTag(ALLTAG));
@@ -54,7 +59,10 @@ public abstract class MYSListActivity extends AppCompatActivity implements MYSLi
         tabber.setTabGravity(TabLayout.GRAVITY_FILL);
     }
 
-    public void initDrawer(DrawerLayout dl, Toolbar toolBar){
+    /*
+     * Initiates the drawer component
+     */
+    public void initDrawer(final DrawerLayout dl, Toolbar toolBar){
         ActionBarDrawerToggle mDrawerToggle;
         mDrawerToggle = new ActionBarDrawerToggle(this,dl,toolBar,R.string.menu_drawer_open,R.string.menu_drawer_close){
 
@@ -68,11 +76,26 @@ public abstract class MYSListActivity extends AppCompatActivity implements MYSLi
 
         };
         dl.setDrawerListener(mDrawerToggle);
-        mDrawerToggle.setHomeAsUpIndicator(R.drawable.rock_gesture);
+        mDrawerToggle.setDrawerIndicatorEnabled(false);
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.rock_gesture, this.getTheme());
+        mDrawerToggle.setHomeAsUpIndicator(drawable);
+        mDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dl.isDrawerVisible(GravityCompat.START)) {
+                    dl.closeDrawer(GravityCompat.START);
+                } else {
+                    dl.openDrawer(GravityCompat.START);
+                }
+            }
+        });
         mDrawerToggle.syncState();
     }
 
 
+    /*
+     * Initiates the search component inside toolbar
+     */
     public void initSearchFrame(LinearLayout searchFrame, Spinner searchSpinner){
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
