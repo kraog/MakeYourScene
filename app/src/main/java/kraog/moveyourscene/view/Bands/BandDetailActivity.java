@@ -1,4 +1,4 @@
-package kraog.moveyourscene.view;
+package kraog.moveyourscene.view.bands;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;

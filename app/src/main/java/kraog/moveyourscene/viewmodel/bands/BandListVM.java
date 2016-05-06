@@ -34,13 +34,19 @@ public class BandListVM extends MYSListVM {
     public static MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener;
     private BandListViewModelListener mBandListViewModelListener;
 
-    public BandListVM(BandRecyclerViewAdapter.BandRecyclerViewListener listener, MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener, BandListViewModelListener mBandListViewModelListener, Band bandFilter) {
+    public BandListVM(BandRecyclerViewAdapter.BandRecyclerViewListener listener,
+                      MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener,
+                      BandListViewModelListener mBandListViewModelListener,
+                      MYSListVMInterface mMYSListVMInterface,
+                      Band bandFilter) {
+        super(mMYSListVMInterface);
         DaggerApplicationComponent.create().inject(this);
         bandList.addAll(dm.getBands(bandFilter));
         Funciones.setStupidData(user,menuItemList);
         this.mBandListViewModelListener = mBandListViewModelListener;
         this.listener = listener;
         this.mListener = mListener;
+        super.mMYSListVMInterface = mMYSListVMInterface;
     }
 
     @BindingAdapter({"bind:items"})

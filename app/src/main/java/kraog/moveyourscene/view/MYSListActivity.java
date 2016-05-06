@@ -1,5 +1,6 @@
 package kraog.moveyourscene.view;
 
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -7,35 +8,49 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import kraog.moveyourscene.R;
-import kraog.moveyourscene.model.domain.MenuDrawerItem;
-import kraog.moveyourscene.view.adapter.MenuRecyclerViewAdapter;
+import kraog.moveyourscene.viewmodel.MYSListVM;
 
 /**
  * Created by Gorka on 04/05/2016.
  */
-public class MYSListActivity extends AppCompatActivity{
+public abstract class MYSListActivity extends AppCompatActivity implements MYSListVM.MYSListVMInterface{
 
 
+    public static final String ALLTAG = "kraog.moveyourscene.view.ALLTAG";
+    public static final String FAVTAG = "kraog.moveyourscene.view.FAVTAG";
+    public static final String LOOKTAG = "kraog.moveyourscene.view.LOOKTAG";
+    public Animation slide_down,slide_up;
+    public LinearLayout searchFrame;
 
+
+    public MYSListActivity(){
+    }
     /*
     * Initiates the toolbar
     */
-    public void initToolbar(Toolbar toolBar) {
+    public void initToolbar(Toolbar toolBar, int titleId) {
         setSupportActionBar(toolBar);
         final ActionBar actionBar = getSupportActionBar();
 
         if (actionBar != null) {
+            actionBar.setLogo(R.drawable.rock_gesture);
+            actionBar.setTitle(titleId);
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.rock_gesture);
         }
     }
     public void initTabs(TabLayout tabber)
     {
-        tabber.addTab(tabber.newTab().setIcon(R.drawable.layers_icon));
-        tabber.addTab(tabber.newTab().setIcon(R.drawable.plain_heart));
-        tabber.addTab(tabber.newTab().setIcon(R.drawable.sharing_interface));
+        tabber.addTab(tabber.newTab().setIcon(R.drawable.layers_icon).setTag(ALLTAG));
+        tabber.addTab(tabber.newTab().setIcon(R.drawable.plain_heart).setTag(FAVTAG));
+        tabber.addTab(tabber.newTab().setIcon(R.drawable.magnifier).setTag(LOOKTAG));
         tabber.setTabGravity(TabLayout.GRAVITY_FILL);
     }
 
@@ -53,7 +68,45 @@ public class MYSListActivity extends AppCompatActivity{
 
         };
         dl.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.setHomeAsUpIndicator(R.drawable.rock_gesture);
         mDrawerToggle.syncState();
     }
 
+
+    public void initSearchFrame(LinearLayout searchFrame, Spinner searchSpinner){
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.search_spinner, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        searchSpinner.setAdapter(adapter);
+        this.searchFrame = searchFrame;
+        this.searchFrame.setVisibility(View.INVISIBLE);
+        LinearLayout.LayoutParams params= (LinearLayout.LayoutParams)this.searchFrame.getLayoutParams();
+        params.height = 0;
+        this.searchFrame.setLayoutParams(params);
+        slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_out_bottom);
+
+        slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_in_bottom);
+    }
+
+    @Override
+    public void onTabSelectedStart(TabLayout.Tab tab){
+        LinearLayout.LayoutParams params= (LinearLayout.LayoutParams)this.searchFrame.getLayoutParams();
+        if (this.searchFrame.getVisibility()==View.VISIBLE){
+            this.searchFrame.startAnimation(slide_down);
+            params.height = 0;
+            this.searchFrame.setLayoutParams(params);
+            this.searchFrame.setVisibility(View.INVISIBLE);
+        } else if (tab.getTag().equals(LOOKTAG)){
+            this.searchFrame.startAnimation(slide_up);
+            params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
+            this.searchFrame.setLayoutParams(params);
+            this.searchFrame.setVisibility(View.VISIBLE);
+        }
+        onTabSelected(tab);
+    }
+
+    public abstract void onTabSelected(TabLayout.Tab tab);
 }

@@ -1,6 +1,7 @@
 package kraog.moveyourscene.viewmodel;
 
 import android.support.design.widget.TabLayout;
+import android.widget.LinearLayout;
 
 import javax.inject.Inject;
 
@@ -12,14 +13,19 @@ import kraog.moveyourscene.model.data.DataManager;
 public class MYSListVM {
     @Inject
     public DataManager dm;
+    public static MYSListVMInterface mMYSListVMInterface;
 
 
+    public MYSListVM(MYSListVMInterface mMYSListVMInterface){
+        this.mMYSListVMInterface = mMYSListVMInterface;
+    }
     public TabLayout.OnTabSelectedListener getTabListener(){
 
         return new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                int i =0;
+
+                MYSListVM.this.mMYSListVMInterface.onTabSelectedStart(tab);
             }
 
             @Override
@@ -32,6 +38,10 @@ public class MYSListVM {
 
             }
         };
+    }
+
+    public interface MYSListVMInterface{
+        void onTabSelectedStart(TabLayout.Tab tab);
     }
 
 }

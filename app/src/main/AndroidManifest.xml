@@ -23,23 +23,23 @@
 
         <!-- BAND MODULE-->
         <activity
-            android:name=".view.BandListActivity"
+            android:name=".view.bands.BandListActivity"
             android:parentActivityName=".view.FrontActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.FrontActivity" />
         </activity>
         <activity
-            android:name=".view.BandDetailActivity"
-            android:parentActivityName=".view.BandListActivity">
+            android:name=".view.bands.BandDetailActivity"
+            android:parentActivityName=".view.bands.BandListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.BandListActivity" />
+                android:value=".view.bands.BandListActivity" />
         </activity>
 
         <!-- DISC MODULE-->
         <activity
-            android:name=".view.DiscListActivity"
+            android:name=".view.discs.DiscListActivity"
             android:parentActivityName=".view.FrontActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

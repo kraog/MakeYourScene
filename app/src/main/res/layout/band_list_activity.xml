@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".view.BandListActivity">
+        tools:context=".view.bands.BandListActivity">
 
 
         <android.support.design.widget.CoordinatorLayout
@@ -41,7 +41,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:title="@string/band_title"
+                android:logo="@drawable/rock_gesture"
                 app:layout_scrollFlags="scroll|enterAlways" />
+            <LinearLayout
+                android:id="@+id/search_frame"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:alpha="0.5"
+                android:gravity="center_vertical">
+            <Spinner
+                android:id="@+id/search_spinner"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"/>
+
+            <SearchView
+                android:id="@+id/search_box"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:contentDescription="Category"
+                android:foreground="@drawable/mys_search_box_inside"
+                android:background="@drawable/mys_search_box"
+                >
+            </SearchView>
+        </LinearLayout>
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"

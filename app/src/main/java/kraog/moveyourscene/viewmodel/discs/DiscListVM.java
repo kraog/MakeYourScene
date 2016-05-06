@@ -31,13 +31,19 @@ public class DiscListVM extends MYSListVM {
     static MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener;
     private DiscListViewModelListener mDiscListViewModelListener;
 
-    public DiscListVM(DiscRecyclerViewAdapter.DiscRecyclerViewListener listener, MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener, DiscListViewModelListener mDiscListViewModelListener, Disc discFilter) {
+    public DiscListVM(DiscRecyclerViewAdapter.DiscRecyclerViewListener listener,
+                      MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener,
+                      DiscListViewModelListener mDiscListViewModelListener,
+                      MYSListVMInterface mMYSListVMInterface,
+                      Disc discFilter) {
+        super(mMYSListVMInterface);
         DaggerApplicationComponent.create().inject(this);
         discList.addAll(dm.getDiscs());
         Funciones.setStupidData(user,menuItemList);
         this.mDiscListViewModelListener = mDiscListViewModelListener;
         this.listener = listener;
         this.mListener = mListener;
+        super.mMYSListVMInterface = mMYSListVMInterface;
     }
 
     @BindingAdapter({"bind:items"})
