@@ -1,6 +1,10 @@
 package kraog.moveyourscene.util;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.databinding.ObservableField;
+import android.net.Uri;
 
 import java.util.List;
 
@@ -36,5 +40,16 @@ public class Funciones {
         mdi3.setImageResource(R.drawable.business);
         mdi3.setActivity_related(MenuDrawerItem.Activity_Related.CONCERT_LIST);
         menuItemList.add(mdi3);
+    }
+
+    public static void watchYoutubeVideo(Activity act, String id){
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+            act.startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://www.youtube.com/watch?v=" + id));
+            act.startActivity(intent);
+        }
     }
 }

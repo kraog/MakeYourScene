@@ -1,4 +1,4 @@
-package kraog.moveyourscene.view.bands;
+package kraog.moveyourscene.view.discs;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -17,35 +17,30 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import kraog.moveyourscene.R;
-import kraog.moveyourscene.databinding.BandDetailActivityBinding;
-import kraog.moveyourscene.model.domain.Band;
+import kraog.moveyourscene.databinding.DiscDetailActivityBinding;
+import kraog.moveyourscene.model.domain.Disc;
 import kraog.moveyourscene.util.Funciones;
-import kraog.moveyourscene.viewmodel.bands.BandDetailVM;
+import kraog.moveyourscene.viewmodel.discs.DiscDetailVM;
 
-/**
- * Created by epelde on 21/04/2016.
- */
-public class BandDetailActivity extends AppCompatActivity implements BandDetailVM.BandDetailViewModelListener{
+public class DiscDetailActivity extends AppCompatActivity implements DiscDetailVM.DiscDetailViewModelListener{
 
-    private static final String EXTRA_BAND = "kraog.moveyourscene.EXTRA_BAND";
+    private static final String EXTRA_DISC = "kraog.moveyourscene.EXTRA_DISC";
     private static final String EXTRA_IMAGE = "kraog.moveyourscene.EXTRA_IMAGE";
     public static final String CARD_BIO = "kraog.moveyourscene.CARD_BIO";
-    public static final String CARD_CONCERT = "kraog.moveyourscene.CARD_CONCERT";
-    public static final String CARD_DISC = "kraog.moveyourscene.CARD_DISC";
     public static final String CARD_BUTTONS = "kraog.moveyourscene.CARD_BUTTONS";
-    BandDetailActivityBinding binding;
+    DiscDetailActivityBinding binding;
     public static Animation fab_toOrigin,fab_toDetail,slide_down,slide_up;
-    BandDetailVM bandDetailVM;
+    DiscDetailVM discDetailVM;
 
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Band band = (Band) getIntent().getSerializableExtra(EXTRA_BAND);
-        bandDetailVM = new BandDetailVM(band,this,this.getApplicationContext());
-        binding = DataBindingUtil.setContentView(this, R.layout.band_detail_activity);
-        binding.setBandDetailVM(bandDetailVM);
+        Disc disc = (Disc) getIntent().getSerializableExtra(EXTRA_DISC);
+        discDetailVM = new DiscDetailVM(disc,this,this.getApplicationContext());
+        binding = DataBindingUtil.setContentView(this, R.layout.disc_detail_activity);
+        binding.setDiscDetailVM(discDetailVM);
 
         ViewCompat.setTransitionName(binding.appBarLayout, EXTRA_IMAGE);
         supportPostponeEnterTransition();
@@ -69,10 +64,10 @@ public class BandDetailActivity extends AppCompatActivity implements BandDetailV
 
 
 
-    public static void navigate(AppCompatActivity activity,View trantistionImage, Band band) {
-        Intent intent = new Intent(activity, BandDetailActivity.class);
-        intent.putExtra(EXTRA_BAND, band);
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, trantistionImage, EXTRA_IMAGE);
+    public static void navigate(AppCompatActivity activity,View trantitionImage, Disc disc) {
+        Intent intent = new Intent(activity, DiscDetailActivity.class);
+        intent.putExtra(EXTRA_DISC, disc);
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, trantitionImage, EXTRA_IMAGE);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
     }
 
@@ -133,13 +128,7 @@ public class BandDetailActivity extends AppCompatActivity implements BandDetailV
     public LinearLayout cardRelated(String relatedCard) {
         switch (relatedCard) {
             case CARD_BIO: {
-                return binding.layoutDiscsComponent.layoutDiscs;
-            }
-            case CARD_CONCERT: {
-                return binding.layoutDiscsComponent.layoutDiscs;
-            }
-            case CARD_DISC: {
-                return binding.layoutDiscsComponent.layoutDiscs;
+                return binding.layoutBioComponent.layoutBio;
             }
             default: return null;
         }

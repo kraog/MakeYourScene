@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="bandDetailVM"
+            type="kraog.moveyourscene.viewmodel.bands.BandDetailVM" />
+    </data>
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/layout_discs"
+        android:visibility="invisible"
+        android:layout_gravity="top">
+
+        <TextView
+            android:id="@+id/title_songs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_large"
+            android:layout_marginRight="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:text="@string/band_song_explain"
+            />
+
+        <Button
+            android:text="a tope"
+            android:id="@+id/button_song"
+            android:background="@drawable/boton_chulo"
+            android:drawableLeft="@android:drawable/sym_action_chat"
+            style="@style/ButtonText"
+            android:textColor="#a6a4a4">
+
+        </Button>
+
+    </LinearLayout>
+    </layout>

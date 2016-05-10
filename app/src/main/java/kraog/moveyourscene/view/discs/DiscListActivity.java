@@ -59,7 +59,7 @@ public class DiscListActivity extends MYSListActivity implements DiscRecyclerVie
 
     @Override
     public void onItemClickedSuperior(View view,Disc disc) {
-      //  BandDetailActivity.navigate(this,view.findViewById(R.id.image),disc);
+        DiscDetailActivity.navigate(this,view.findViewById(R.id.image),disc);
     }
 
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="bandDetailVM"
+            type="kraog.moveyourscene.viewmodel.bands.BandDetailVM" />
+    </data>
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/layout_bio"
+        android:visibility="invisible"
+        android:layout_gravity="top">
+
+        <TextView
+            android:id="@+id/title_songs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_large"
+            android:layout_marginRight="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:text="@string/band_bio_explain"
+            />
+
+    </LinearLayout>
+    </layout>

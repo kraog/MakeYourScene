@@ -1,4 +1,4 @@
-package kraog.moveyourscene.viewmodel.bands;
+package kraog.moveyourscene.viewmodel.discs;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
@@ -11,36 +11,33 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.graphics.Palette;
 import android.view.Gravity;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import kraog.moveyourscene.R;
+import java.util.List;
+
 import kraog.moveyourscene.model.domain.Band;
-import kraog.moveyourscene.util.Funciones;
+import kraog.moveyourscene.model.domain.Disc;
+import kraog.moveyourscene.model.domain.Track;
 import kraog.moveyourscene.view.bands.BandDetailActivity;
+import kraog.moveyourscene.view.discs.DiscDetailActivity;
 
-/**
- * Created by epelde on 21/04/2016.
- */
-public class BandDetailVM {
+public class DiscDetailVM {
 
-    public ObservableField<Band> band;
+    public ObservableField<Disc> disc;
     public static ObservableField<Integer> anchorGravity;
-    public ObservableField<String> bioCard = new ObservableField<String> (BandDetailActivity.CARD_BIO);
-    public ObservableField<String> concertCard = new ObservableField<String> (BandDetailActivity.CARD_CONCERT);
-    public ObservableField<String> discCard = new ObservableField<String> (BandDetailActivity.CARD_DISC);
-    public static BandDetailViewModelListener mBandDetailViewModelListener;
-    public static String cardUp = BandDetailActivity.CARD_BUTTONS;
+    public ObservableField<String> bioCard;
+    public ObservableField<List<Track>> trackList;
+    public static DiscDetailViewModelListener mDiscDetailViewModelListener;
+    public static String cardUp = DiscDetailActivity.CARD_BUTTONS;
 
-    public BandDetailVM(@NonNull Band band, @NonNull BandDetailViewModelListener mBandDetailViewModelListener, Context context) {
-        this.band = new ObservableField<>(band);
-        this.mBandDetailViewModelListener = mBandDetailViewModelListener;
+    public DiscDetailVM(@NonNull Disc disc, @NonNull DiscDetailViewModelListener mDiscDetailViewModelListener, Context context) {
+        this.disc = new ObservableField<>(disc);
+        this.mDiscDetailViewModelListener = mDiscDetailViewModelListener;
         this.anchorGravity= new ObservableField<Integer> (Gravity.END|Gravity.BOTTOM|Gravity.RIGHT);
+        this.bioCard = new ObservableField<String> (DiscDetailActivity.CARD_BIO);
     }
 
 
@@ -52,18 +49,18 @@ public class BandDetailVM {
             @Override
             public void onClick(View v) {
                 FloatingActionButton fab = (FloatingActionButton) v;
-                if(!cardUp.equals(BandDetailActivity.CARD_BUTTONS)){
+                if(!cardUp.equals(DiscDetailActivity.CARD_BUTTONS)){
                     anchorGravity.set(Gravity.END|Gravity.BOTTOM|Gravity.RIGHT);
-                    mBandDetailViewModelListener.onFabListenerClicked(cardUp);
-                    cardUp = BandDetailActivity.CARD_BUTTONS;
+                    mDiscDetailViewModelListener.onFabListenerClicked(cardUp);
+                    cardUp = DiscDetailActivity.CARD_BUTTONS;
                 } else {
-                    mBandDetailViewModelListener.onYTButtonListenerClicked("EaPP8H4H6nc");
+                    mDiscDetailViewModelListener.onYTButtonListenerClicked("EaPP8H4H6nc");
                 }
             }
         };
     }
 
-    @BindingAdapter({"bind:relatedCard"})
+    @BindingAdapter({"bind:disc_relatedCard"})
     public static void setDBClickListener(View v, final String relatedCard){
 
         v.setOnClickListener(
@@ -71,7 +68,7 @@ public class BandDetailVM {
                     @Override
                     public void onClick(View v) {
                         anchorGravity.set(Gravity.END|Gravity.BOTTOM|Gravity.LEFT);
-                        mBandDetailViewModelListener.onButtonListenerClicked(relatedCard);
+                        mDiscDetailViewModelListener.onButtonListenerClicked(relatedCard);
                         cardUp = relatedCard;
                     }
                 }
@@ -79,9 +76,9 @@ public class BandDetailVM {
     }
 
     /*
-        Sets the band image, extracting the associated color for the floating bar palette
+        Sets the disc image, extracting the associated color for the floating bar palette
      */
-    @BindingAdapter({"bind:imageDetailUrl"})
+    @BindingAdapter({"bind:disc_imageDetailUrl"})
     public static void bindImage(final ImageView view, String url) {
         Picasso.with(view.getContext()).load(url).fit().centerCrop().into(view, new Callback() {
             @Override
@@ -89,7 +86,7 @@ public class BandDetailVM {
                 Bitmap bitmap = ((BitmapDrawable) view.getDrawable()).getBitmap();
                 Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
                     public void onGenerated(Palette palette) {
-                        mBandDetailViewModelListener.applyPalette(palette);
+                        mDiscDetailViewModelListener.applyPalette(palette);
                     }
                 });
             }
@@ -109,7 +106,7 @@ public class BandDetailVM {
         ((CoordinatorLayout.LayoutParams)view.getLayoutParams()).anchorGravity=anchorGravity;
     }
 
-    public interface BandDetailViewModelListener {
+    public interface DiscDetailViewModelListener {
         public void applyPalette(Palette palette);
         public void onFabListenerClicked(String relatedCard);
         public void onButtonListenerClicked(String relatedCard);

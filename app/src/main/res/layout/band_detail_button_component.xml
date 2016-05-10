@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="bandDetailVM"
+            type="kraog.moveyourscene.viewmodel.bands.BandDetailVM" />
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="top"
+    android:id="@+id/layout_buttons">
+
+    <Button
+        android:text="@string/band_bio_button"
+        android:id="@+id/buttonBio"
+        android:background="@drawable/boton_chulo"
+        android:drawableLeft="@android:drawable/sym_action_chat"
+        style="@style/ButtonText"
+        android:textColor="#a6a4a4"
+        bind:relatedCard="@{bandDetailVM.bioCard}"></Button>
+    <Button
+        android:text="@string/band_disco_button"
+        android:id="@+id/buttonDisco"
+        android:background="@drawable/boton_chulo"
+        android:drawableLeft="@android:drawable/sym_action_chat"
+        style="@style/ButtonText"
+        android:textColor="#a6a4a4"
+        bind:relatedCard="@{bandDetailVM.discCard}"></Button>
+    <Button
+        android:text="@string/band_concert_button"
+        android:id="@+id/buttonConcerts"
+        android:background="@drawable/boton_chulo"
+        android:drawableLeft="@android:drawable/ic_dialog_email"
+        style="@style/ButtonText"
+        android:textColor="#a6a4a4"
+        bind:relatedCard="@{bandDetailVM.concertCard}"></Button>
+
+</LinearLayout>
+</layout>

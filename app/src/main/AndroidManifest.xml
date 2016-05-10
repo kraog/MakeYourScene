@@ -45,6 +45,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.FrontActivity" />
         </activity>
+        <activity
+            android:name=".view.discs.DiscDetailActivity"
+            android:parentActivityName=".view.discs.DiscListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.discs.DiscListActivity" />
+        </activity>
 
 
 

@@ -2,6 +2,7 @@ package kraog.moveyourscene.model.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Gorka on 02/05/2016.
@@ -16,6 +17,7 @@ public class Disc implements Serializable {
     private Date date_start;
     private Date date_end;
     private String imageUrl;
+    private List<Track> trackList;
 
     public Disc(int id, int id_band, String name , String imageUrl){
         this.id = id;
@@ -86,5 +88,13 @@ public class Disc implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Track> getTrackList() {
+        return trackList;
+    }
+
+    public void setTrackList(List<Track> trackList) {
+        this.trackList = trackList;
     }
 }

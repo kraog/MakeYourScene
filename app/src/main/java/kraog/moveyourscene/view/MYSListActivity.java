@@ -49,7 +49,7 @@ public abstract class MYSListActivity extends AppCompatActivity implements MYSLi
     }
 
     /*
-     * Initiates the up tabs
+     * Initiates the upper tabs
      */
     public void initTabs(TabLayout tabber)
     {
