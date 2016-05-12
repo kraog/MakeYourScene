@@ -4,12 +4,16 @@ import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.view.View;
 
+import javax.inject.Inject;
+
+import kraog.moveyourscene.model.data.MYSFirebase;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 
 /**
  * Created by Gorka on 04/05/2016.
  */
 public class FrontVM {
+    public MYSFirebase mysfb;
 
     public static FrontVMListener mFrontVMListener;
     public ObservableField<MenuDrawerItem.Activity_Related> bandAct;

@@ -13,40 +13,40 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/makeyourscenefront"
+    android:background="@drawable/makeyourscenefront2"
     tools:context="kraog.moveyourscene.view.FrontActivity">
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/frontDiscButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/music_1"
-        bind:relatedFrontAct="@{frontVM.discAct}"
-        android:layout_alignParentEnd="false"
-        android:layout_marginLeft="40dp" />
+        android:alpha="0.5"
+        android:id="@+id/frontBandButton"
+        android:src="@drawable/group"
+        bind:relatedFrontAct="@{frontVM.bandAct}"
+        android:layout_marginLeft="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/frontDiscButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:alpha="0.5"
         android:id="@+id/frontConcertButton"
         android:layout_alignBottom="@+id/frontDiscButton"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/add"
+        android:src="@drawable/concert"
         android:layout_marginRight="40dp"
         bind:relatedFrontAct="@{frontVM.concertAct}" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/frontBandButton"
-        android:layout_below="@+id/frontConcertButton"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/checked_1"
-        android:layout_marginTop="20dp"
-        bind:relatedFrontAct="@{frontVM.bandAct}" />
+        android:id="@+id/frontDiscButton"
+        android:alpha="0.5"
+        android:src="@drawable/music_long_play"
+        bind:relatedFrontAct="@{frontVM.discAct}"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/frontConcertButton" />
 
 </RelativeLayout>
 </layout>

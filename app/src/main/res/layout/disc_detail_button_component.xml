@@ -21,7 +21,7 @@
         android:drawableLeft="@android:drawable/sym_action_chat"
         style="@style/ButtonText"
         android:textColor="#a6a4a4"
-        bind:disc_relatedCard="@{discDetailVM.bioCard}"></Button>
+        bind:discRelatedCard="@{discDetailVM.bioCard}"></Button>
     <Button
         android:text="@string/band_disco_button"
         android:id="@+id/buttonDisco"
@@ -29,7 +29,7 @@
         android:drawableLeft="@android:drawable/sym_action_chat"
         style="@style/ButtonText"
         android:textColor="#a6a4a4"
-        bind:disc_relatedCard="@{discDetailVM.bioCard}"></Button>
+        bind:discRelatedCard="@{discDetailVM.bioCard}"></Button>
 
 </LinearLayout>
 </layout>

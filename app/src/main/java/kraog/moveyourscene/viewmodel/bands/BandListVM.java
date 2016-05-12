@@ -10,8 +10,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import kraog.moveyourscene.R;
-import kraog.moveyourscene.di.component.DaggerApplicationComponent;
+import kraog.moveyourscene.model.data.MYSFirebase;
+import kraog.moveyourscene.model.data.RxFirebase;
 import kraog.moveyourscene.model.domain.Band;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 import kraog.moveyourscene.model.domain.Preference;
@@ -20,16 +29,15 @@ import kraog.moveyourscene.util.Funciones;
 import kraog.moveyourscene.view.adapter.BandRecyclerViewAdapter;
 import kraog.moveyourscene.view.adapter.MenuRecyclerViewAdapter;
 import kraog.moveyourscene.viewmodel.MYSListVM;
+import rx.Observable;
+import rx.Subscriber;
 
-/**
- * Created by epelde on 20/04/2016.
- */
 public class BandListVM extends MYSListVM {
 
     public ObservableArrayList<Band> bandList = new ObservableArrayList<Band>();
     public ObservableField<User> user = new ObservableField<User>();
     public ObservableArrayList<MenuDrawerItem> menuItemList  = new ObservableArrayList<MenuDrawerItem>();
-
+    static List<Band> bandListWrapper;
     static BandRecyclerViewAdapter.BandRecyclerViewListener listener;
     public static MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener;
     private BandListViewModelListener mBandListViewModelListener;
@@ -40,13 +48,30 @@ public class BandListVM extends MYSListVM {
                       MYSListVMInterface mMYSListVMInterface,
                       Band bandFilter) {
         super(mMYSListVMInterface);
-        DaggerApplicationComponent.create().inject(this);
-        bandList.addAll(dm.getBands(bandFilter));
+        this.bandListWrapper = new ArrayList<Band>();
         Funciones.setStupidData(user,menuItemList);
         this.mBandListViewModelListener = mBandListViewModelListener;
         this.listener = listener;
         this.mListener = mListener;
         super.mMYSListVMInterface = mMYSListVMInterface;
+        mysfb.getBandsSnapShot().subscribe(new Subscriber<DataSnapshot>() {
+            @Override
+            public void onCompleted() {
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(DataSnapshot ds) {
+                for (DataSnapshot postSnapshot: ds.getChildren()) {
+                    bandListWrapper.add(postSnapshot.getValue(Band.class));
+                }
+                bandList.addAll(bandListWrapper);
+            }
+        });
     }
 
     @BindingAdapter({"bind:items"})

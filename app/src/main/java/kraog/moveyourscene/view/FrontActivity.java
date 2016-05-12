@@ -4,8 +4,11 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.firebase.client.Firebase;
+
 import kraog.moveyourscene.R;
 import kraog.moveyourscene.databinding.FrontActivityBinding;
+import kraog.moveyourscene.model.data.MYSFirebase;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 import kraog.moveyourscene.view.bands.BandListActivity;
 import kraog.moveyourscene.view.discs.DiscListActivity;
@@ -18,6 +21,7 @@ public class FrontActivity extends AppCompatActivity implements FrontVM.FrontVML
         super.onCreate(savedInstanceState);
         FrontActivityBinding binding = DataBindingUtil.setContentView(this,R.layout.front_activity);
         binding.setFrontVM(new FrontVM(this));
+        Firebase.setAndroidContext(this);
     }
 
     @Override

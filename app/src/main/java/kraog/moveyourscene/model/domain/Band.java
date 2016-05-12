@@ -24,9 +24,7 @@ public class Band implements Serializable {
     private List<Concert> list_concert;
     private List<Disc> list_disc;
 
-    public Band() {
-
-    }
+    public Band() {}
 
     public Band(int id, String name, String imageUrl) {
         this.setId(id);

@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -129,6 +131,15 @@ public abstract class MYSListActivity extends AppCompatActivity implements MYSLi
             this.searchFrame.setVisibility(View.VISIBLE);
         }
         onTabSelected(tab);
+    }
+
+
+
+    private void setupWindowAnimations() {
+        Slide slide = new Slide();
+        slide.setDuration(4000);
+        slide.setSlideEdge(Gravity.TOP);
+        getWindow().setExitTransition(slide);
     }
 
     public abstract void onTabSelected(TabLayout.Tab tab);

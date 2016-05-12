@@ -7,11 +7,14 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import kraog.moveyourscene.model.domain.Band;
 import kraog.moveyourscene.model.domain.Disc;
+import kraog.moveyourscene.util.Funciones;
 
 
 /**
@@ -73,6 +76,24 @@ public class DataManagerImpl implements DataManager {
     @Override
     public List<Band> getBands() {
         return bands;
+    }
+
+    public Map<String,Band> getMapBands() {
+        Map<String,Band> bandMaps = new HashMap<String,Band>();
+        for(Band band : bands){
+
+            bandMaps.put(band.getName(),band);
+        }
+        return bandMaps;
+    }
+
+    public Map<String,Disc> getMapDiscs() {
+        Map<String,Disc> discMaps = new HashMap<String,Disc>();
+        for(Disc disc : discs){
+
+            discMaps.put(Funciones.convertToFirebaseValidKey(disc.getName()),disc);
+        }
+        return discMaps;
     }
 
     @Override

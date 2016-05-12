@@ -12,8 +12,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import kraog.moveyourscene.R;
 import kraog.moveyourscene.databinding.BandListActivityBinding;
+import kraog.moveyourscene.model.data.MYSFirebase;
 import kraog.moveyourscene.model.domain.Band;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 import kraog.moveyourscene.view.discs.DiscListActivity;
@@ -30,6 +39,7 @@ public class BandListActivity extends MYSListActivity implements BandRecyclerVie
 
     private static final String EXTRA_BAND_FILTER = "kraog.moveyourscene.EXTRA_BAND_FILTER";
     BandListActivityBinding binding;
+    static List<Band> bandListWrapper = new ArrayList<Band>();
 
 
     public BandListActivity(){
@@ -49,12 +59,17 @@ public class BandListActivity extends MYSListActivity implements BandRecyclerVie
         Intent intent = getIntent();
         Band bandFilter = (Band)intent.getSerializableExtra(EXTRA_BAND_FILTER);
         binding = DataBindingUtil.setContentView(this, R.layout.band_list_activity);
-        binding.setBandListVM(new BandListVM(this,this,this,this,bandFilter));
+
+      createNext(binding);
+
+    }
+
+    private void createNext(BandListActivityBinding binding){
+        binding.setBandListVM(new BandListVM(this,this,this,this,new Band()));
         initToolbar(binding.toolbar,R.string.band_title);
         initTabs(binding.tabs);
         initDrawer(binding.drawerLayout,binding.toolbar);
         initSearchFrame(binding.searchFrame,binding.searchSpinner);
-
     }
 
 

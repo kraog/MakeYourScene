@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.databinding.ObservableField;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Base64;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import kraog.moveyourscene.R;
@@ -51,5 +55,17 @@ public class Funciones {
                     Uri.parse("http://www.youtube.com/watch?v=" + id));
             act.startActivity(intent);
         }
+    }
+
+    public static String convertToFirebaseValidKey(String preKey){
+return preKey.
+        replace('/', '_').
+        replace('.','_').
+        replace( '#','_').
+        replace('$','_').
+        replace('[','_').
+        replace(']','_').
+        replace('{','_').
+        replace('}','_');
     }
 }

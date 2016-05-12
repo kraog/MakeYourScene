@@ -19,6 +19,7 @@ public class Disc implements Serializable {
     private String imageUrl;
     private List<Track> trackList;
 
+    public Disc(){}
     public Disc(int id, int id_band, String name , String imageUrl){
         this.id = id;
         this.id_band=id_band;

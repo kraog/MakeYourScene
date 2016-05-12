@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
@@ -28,8 +29,8 @@ public class DiscDetailActivity extends AppCompatActivity implements DiscDetailV
     private static final String EXTRA_IMAGE = "kraog.moveyourscene.EXTRA_IMAGE";
     public static final String CARD_BIO = "kraog.moveyourscene.CARD_BIO";
     public static final String CARD_BUTTONS = "kraog.moveyourscene.CARD_BUTTONS";
+    public static final String CARD_TRACK_LIST = "kraog.moveyourscene.CARD_BUTTONS";
     DiscDetailActivityBinding binding;
-    public static Animation fab_toOrigin,fab_toDetail,slide_down,slide_up;
     DiscDetailVM discDetailVM;
 
 
@@ -42,6 +43,10 @@ public class DiscDetailActivity extends AppCompatActivity implements DiscDetailV
         binding = DataBindingUtil.setContentView(this, R.layout.disc_detail_activity);
         binding.setDiscDetailVM(discDetailVM);
 
+        binding.tabs.addTab(binding.tabs.newTab().setIcon(R.drawable.mys_profile).setTag(CARD_BIO));
+        binding.tabs.addTab(binding.tabs.newTab().setIcon(R.drawable.quaver_outline).setTag(CARD_TRACK_LIST));
+        binding.tabs.setTabGravity(TabLayout.GRAVITY_FILL);
+
         ViewCompat.setTransitionName(binding.appBarLayout, EXTRA_IMAGE);
         supportPostponeEnterTransition();
 
@@ -49,17 +54,6 @@ public class DiscDetailActivity extends AppCompatActivity implements DiscDetailV
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         binding.collapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
-
-        fab_toDetail = AnimationUtils.loadAnimation(this.getApplicationContext(),
-                R.anim.fabbutton_to_detail);
-
-        fab_toOrigin = AnimationUtils.loadAnimation(this.getApplicationContext(),
-                R.anim.fabbutton_to_origin);
-        slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.slide_out_bottom);
-
-        slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.slide_in_bottom);
     }
 
 
@@ -86,43 +80,19 @@ public class DiscDetailActivity extends AppCompatActivity implements DiscDetailV
         int primary = getResources().getColor(R.color.primary);
         binding.collapsingToolbar.setContentScrimColor(palette.getMutedColor(primary));
         binding.collapsingToolbar.setStatusBarScrimColor(palette.getDarkMutedColor(primaryDark));
-        updateBackground((FloatingActionButton) findViewById(R.id.fab), palette);
         supportStartPostponedEnterTransition();
     }
 
-    @Override
-    public void onFabListenerClicked(String relatedCard) {
-        binding.fab.setImageResource(R.drawable.youtube42);
-        binding.fab.startAnimation(fab_toOrigin);
-        cardRelated(relatedCard).startAnimation(slide_down);
-        cardRelated(relatedCard).setVisibility(View.INVISIBLE);
-        binding.layoutButtonsComponent.layoutButtons.startAnimation(slide_up);
-        binding.layoutButtonsComponent.layoutButtons.setVisibility(View.VISIBLE);
-    }
 
     @Override
     public void onButtonListenerClicked(String relatedCard) {
         showCard(cardRelated(relatedCard));
     }
 
-    @Override
-    public void onYTButtonListenerClicked(String uri) {
-        Funciones.watchYoutubeVideo(this,uri);
-    }
 
 
-    private void updateBackground(FloatingActionButton fab, Palette palette) {
-        int lightVibrantColor = palette.getLightVibrantColor(getResources().getColor(android.R.color.black));
-        int vibrantColor = palette.getVibrantColor(getResources().getColor(R.color.colorPrimaryDark));
-        fab.setRippleColor(lightVibrantColor);
-        fab.setBackgroundTintList(ColorStateList.valueOf(vibrantColor));
-    }
     private void showCard(LinearLayout card){
-        binding.fab.setImageResource(R.drawable.nut_icon);
-        binding.fab.startAnimation(fab_toDetail);
-        binding.layoutButtonsComponent.layoutButtons.startAnimation(slide_down);
         binding.layoutButtonsComponent.layoutButtons.setVisibility(View.INVISIBLE);
-        card.startAnimation(slide_up);
         card.setVisibility(View.VISIBLE);
     }
     public LinearLayout cardRelated(String relatedCard) {
