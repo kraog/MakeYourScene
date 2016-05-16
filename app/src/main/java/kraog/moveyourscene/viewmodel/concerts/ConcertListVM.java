@@ -1,60 +1,53 @@
-package kraog.moveyourscene.viewmodel.bands;
+package kraog.moveyourscene.viewmodel.concerts;
 
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 
 import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import kraog.moveyourscene.R;
-import kraog.moveyourscene.model.data.MYSFirebase;
-import kraog.moveyourscene.model.data.RxFirebase;
-import kraog.moveyourscene.model.domain.Band;
+import kraog.moveyourscene.model.domain.Concert;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 import kraog.moveyourscene.model.domain.Preference;
 import kraog.moveyourscene.model.domain.User;
 import kraog.moveyourscene.util.Funciones;
-import kraog.moveyourscene.view.adapter.BandRecyclerViewAdapter;
+import kraog.moveyourscene.view.adapter.ConcertRecyclerViewAdapter;
 import kraog.moveyourscene.view.adapter.MenuRecyclerViewAdapter;
 import kraog.moveyourscene.viewmodel.MYSListVM;
-import rx.Observable;
 import rx.Subscriber;
 
-public class BandListVM extends MYSListVM {
+public class ConcertListVM extends MYSListVM {
 
-    public ObservableArrayList<Band> bandList = new ObservableArrayList<Band>();
+    public ObservableArrayList<Concert> concertList = new ObservableArrayList<Concert>();
     public ObservableField<User> user = new ObservableField<User>();
     public ObservableArrayList<MenuDrawerItem> menuItemList  = new ObservableArrayList<MenuDrawerItem>();
-    static List<Band> bandListWrapper;
-    static BandRecyclerViewAdapter.BandRecyclerViewListener listener;
-    static MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener;
-    private BandListViewModelListener mBandListViewModelListener;
+    static List<Concert> concertListWrapper;
+    static ConcertRecyclerViewAdapter.ConcertRecyclerViewListener listener;
+    public static MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener;
+    private ConcertListViewModelListener mConcertListViewModelListener;
 
-    public BandListVM(BandRecyclerViewAdapter.BandRecyclerViewListener listener,
-                      MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener,
-                      BandListViewModelListener mBandListViewModelListener,
-                      MYSListVMInterface mMYSListVMInterface,
-                      Band bandFilter) {
+    public ConcertListVM(ConcertRecyclerViewAdapter.ConcertRecyclerViewListener listener,
+                         MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener,
+                         ConcertListViewModelListener mConcertListViewModelListener,
+                         MYSListVMInterface mMYSListVMInterface,
+                         Concert concertFilter) {
         super(mMYSListVMInterface,mListener);
-        this.bandListWrapper = new ArrayList<Band>();
+        this.concertListWrapper = new ArrayList<Concert>();
         Funciones.setStupidData(user,menuItemList);
-        this.mBandListViewModelListener = mBandListViewModelListener;
+        this.mConcertListViewModelListener = mConcertListViewModelListener;
         this.listener = listener;
-       // this.mListener = mListener;
+        this.mListener = mListener;
         super.mMYSListVMInterface = mMYSListVMInterface;
-        mysfb.getBandsSnapShot().subscribe(new Subscriber<DataSnapshot>() {
+        mysfb.getConcertsSnapShot().subscribe(new Subscriber<DataSnapshot>() {
             @Override
             public void onCompleted() {
             }
@@ -67,22 +60,22 @@ public class BandListVM extends MYSListVM {
             @Override
             public void onNext(DataSnapshot ds) {
                 for (DataSnapshot postSnapshot: ds.getChildren()) {
-                    bandListWrapper.add(postSnapshot.getValue(Band.class));
+                    concertListWrapper.add(postSnapshot.getValue(Concert.class));
                 }
-                bandList.addAll(bandListWrapper);
+                concertList.addAll(concertListWrapper);
             }
         });
     }
 
     @BindingAdapter({"bind:items"})
-    public static void bindList(RecyclerView view, ObservableArrayList<Band> list) {
+    public static void bindList(RecyclerView view, ObservableArrayList<Concert> list) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         view.setLayoutManager(layoutManager);
-        view.setAdapter(new BandRecyclerViewAdapter(list, listener));
+        view.setAdapter(new ConcertRecyclerViewAdapter(list, listener));
     }
 
-  /*  @BindingAdapter(value={"bind:menuitem","bind:iuser"},requireAll = false)
+ /*   @BindingAdapter(value={"bind:menuitem","bind:iuser"},requireAll = false)
     public static void bindMenuList(RecyclerView view, ObservableArrayList<MenuDrawerItem> menuItemList, User user) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -96,7 +89,7 @@ public class BandListVM extends MYSListVM {
        return new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                mBandListViewModelListener.onNavigationItemSelectecCompleted(menuItem.getTitle() + " pressed",menuItem);
+                mConcertListViewModelListener.onNavigationItemSelectecCompleted(menuItem.getTitle() + " pressed",menuItem);
                 menuItem.setChecked(true);
                 return true;
             }
@@ -127,7 +120,7 @@ public class BandListVM extends MYSListVM {
         menuItemList.add(mdi3);
     }
 
-    public interface BandListViewModelListener {
-        public void onNavigationItemSelectecCompleted(String message,MenuItem menuItem);
+    public interface ConcertListViewModelListener {
+        public void onNavigationItemSelectecCompleted(String message, MenuItem menuItem);
     }
 }

@@ -1,14 +1,16 @@
 package kraog.moveyourscene.model.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Gorka on 02/05/2016.
  */
-public class Concert {
+public class Concert implements Serializable{
 
     private int id;
     private int id_stage;
+    private String name;
     private String bio;
     private Date date_concert;
     private String imageUrl;
@@ -60,5 +62,13 @@ public class Concert {
 
     public void setCost(Float cost) {
         this.cost = cost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

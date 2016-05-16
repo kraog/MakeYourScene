@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="bandListVM"
-            type="kraog.moveyourscene.viewmodel.bands.BandListVM" />
+            name="concertListVM"
+            type="kraog.moveyourscene.viewmodel.concerts.ConcertListVM" />
     </data>
 
 
@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".view.bands.BandListActivity"
-        android:background="@drawable/band_list_background">
+        tools:context=".view.concerts.ConcertListActivity"
+        android:background="@drawable/concert_list_background">
 
 
         <android.support.design.widget.CoordinatorLayout
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
-                bind:items="@{bandListVM.bandList}"/>
+                bind:items="@{concertListVM.concertList}"/>
 
         <!-- Action Bar -->
         <android.support.design.widget.AppBarLayout
@@ -48,12 +48,12 @@
                 android:logo="@drawable/rock_gesture"
                 app:layout_scrollFlags="scroll|enterAlways" />
 
-            <!-- Tab Component-->
+         <!-- Tab Component-->
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:onTabSelectedListener="@{bandListVM.getTabListener}"/>
+            app:onTabSelectedListener="@{concertListVM.getTabListener}"/>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -69,8 +69,8 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:background="@drawable/menu_shape"
             android:scrollbars="vertical"
-            bind:itemmenu="@{bandListVM.menuItemList}"
-            bind:user="@{bandListVM.user}"/>
+            bind:itemmenu="@{concertListVM.menuItemList}"
+            bind:user="@{concertListVM.user}"/>
 
 
 </android.support.v4.widget.DrawerLayout>

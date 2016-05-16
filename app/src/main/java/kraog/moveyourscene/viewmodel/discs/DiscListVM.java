@@ -37,7 +37,6 @@ public class DiscListVM extends MYSListVM {
     static List<Disc> discListWrapper;
 
     static DiscRecyclerViewAdapter.DiscRecyclerViewListener listener;
-    static MenuRecyclerViewAdapter.MenuRecyclerViewListener mListener;
     private DiscListViewModelListener mDiscListViewModelListener;
 
     public DiscListVM(DiscRecyclerViewAdapter.DiscRecyclerViewListener listener,
@@ -45,11 +44,10 @@ public class DiscListVM extends MYSListVM {
                       DiscListViewModelListener mDiscListViewModelListener,
                       MYSListVMInterface mMYSListVMInterface,
                       Disc discFilter) {
-        super(mMYSListVMInterface);
+        super(mMYSListVMInterface,mListener);
         Funciones.setStupidData(user,menuItemList);
         this.mDiscListViewModelListener = mDiscListViewModelListener;
         this.listener = listener;
-        this.mListener = mListener;
         super.mMYSListVMInterface = mMYSListVMInterface;
         this.discListWrapper = new ArrayList<Disc>();
 
@@ -80,15 +78,6 @@ public class DiscListVM extends MYSListVM {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         view.setLayoutManager(layoutManager);
         view.setAdapter(new DiscRecyclerViewAdapter(list, listener));
-    }
-    @BindingAdapter(value={"bind:itemmenu","user"}, requireAll = false)
-    public static void bindMenuList(RecyclerView view, ObservableArrayList<MenuDrawerItem> menuItemList, User user) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        view.setLayoutManager(layoutManager);
-        view.setHasFixedSize(true);
-        view.setAdapter(new MenuRecyclerViewAdapter(user,menuItemList,mListener));
-        layoutManager.setMeasuredDimension(100,100);
     }
 
     public NavigationView.OnNavigationItemSelectedListener getNavItemSelected() {

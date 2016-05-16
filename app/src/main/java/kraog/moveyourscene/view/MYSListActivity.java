@@ -1,5 +1,7 @@
 package kraog.moveyourscene.view;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -8,8 +10,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
@@ -19,6 +24,8 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.firebase.client.Firebase;
 
 import kraog.moveyourscene.R;
 import kraog.moveyourscene.viewmodel.MYSListVM;
@@ -34,9 +41,12 @@ public abstract class MYSListActivity extends AppCompatActivity implements MYSLi
     public static final String LOOKTAG = "kraog.moveyourscene.view.LOOKTAG";
     public Animation slide_down,slide_up;
     public LinearLayout searchFrame;
+    public Dialog searchDialog;
 
 
     public MYSListActivity(){
+
+        Firebase.setAndroidContext(this);
     }
     /*
     * Initiates the toolbar
@@ -118,24 +128,24 @@ public abstract class MYSListActivity extends AppCompatActivity implements MYSLi
 
     @Override
     public void onTabSelectedStart(TabLayout.Tab tab){
-        LinearLayout.LayoutParams params= (LinearLayout.LayoutParams)this.searchFrame.getLayoutParams();
-        if (this.searchFrame.getVisibility()==View.VISIBLE){
-            this.searchFrame.startAnimation(slide_down);
-            params.height = 0;
-            this.searchFrame.setLayoutParams(params);
-            this.searchFrame.setVisibility(View.INVISIBLE);
+
+        if (searchDialog.isShowing()){
+            searchDialog.hide();
         } else if (tab.getTag().equals(LOOKTAG)){
-            this.searchFrame.startAnimation(slide_up);
-            params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
-            this.searchFrame.setLayoutParams(params);
-            this.searchFrame.setVisibility(View.VISIBLE);
+            onTabSelected(tab);
+            searchDialog.show();
         }
-        onTabSelected(tab);
     }
 
+    public void initSearchDialog(Context context){
+        ContextThemeWrapper ctw = new ContextThemeWrapper( context, R.style.style_transparent );
+        AlertDialog.Builder builder = new AlertDialog.Builder( ctw );
+        builder.setView(R.layout.search_dialog);
+        searchDialog =builder.create();
+        searchDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+    }
 
-
-    private void setupWindowAnimations() {
+    public  void setupWindowAnimations() {
         Slide slide = new Slide();
         slide.setDuration(4000);
         slide.setSlideEdge(Gravity.TOP);
@@ -143,4 +153,6 @@ public abstract class MYSListActivity extends AppCompatActivity implements MYSLi
     }
 
     public abstract void onTabSelected(TabLayout.Tab tab);
+    public abstract void initCustomSearch();
+
 }

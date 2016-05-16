@@ -11,6 +11,7 @@ import kraog.moveyourscene.databinding.FrontActivityBinding;
 import kraog.moveyourscene.model.data.MYSFirebase;
 import kraog.moveyourscene.model.domain.MenuDrawerItem;
 import kraog.moveyourscene.view.bands.BandListActivity;
+import kraog.moveyourscene.view.concerts.ConcertListActivity;
 import kraog.moveyourscene.view.discs.DiscListActivity;
 import kraog.moveyourscene.viewmodel.FrontVM;
 
@@ -32,7 +33,8 @@ public class FrontActivity extends AppCompatActivity implements FrontVM.FrontVML
                 BandListActivity.navigate(this,null,null);break;
             case DISC_LIST:
                 DiscListActivity.navigate(this,null,null);break;
-            //case CONCERT_LIST:initDrawer();break;
+            case CONCERT_LIST:
+                ConcertListActivity.navigate(this,null,null);break;
         }
     }
 }

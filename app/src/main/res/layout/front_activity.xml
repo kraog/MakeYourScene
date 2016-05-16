@@ -24,7 +24,9 @@
         android:src="@drawable/group"
         bind:relatedFrontAct="@{frontVM.bandAct}"
         android:layout_marginLeft="40dp"
-        android:layout_alignParentBottom="true"
+        android:translationZ="2dp"
+        android:background="@drawable/front_button_shape"
+        android:layout_alignTop="@+id/frontDiscButton"
         android:layout_toStartOf="@+id/frontDiscButton" />
 
     <ImageButton
@@ -32,11 +34,12 @@
         android:layout_height="wrap_content"
         android:alpha="0.5"
         android:id="@+id/frontConcertButton"
-        android:layout_alignBottom="@+id/frontDiscButton"
-        android:layout_alignParentEnd="true"
         android:src="@drawable/concert"
         android:layout_marginRight="40dp"
-        bind:relatedFrontAct="@{frontVM.concertAct}" />
+        bind:relatedFrontAct="@{frontVM.concertAct}"
+        android:background="@drawable/front_button_shape"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/frontDiscButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -45,8 +48,11 @@
         android:alpha="0.5"
         android:src="@drawable/music_long_play"
         bind:relatedFrontAct="@{frontVM.discAct}"
+        android:background="@drawable/front_button_shape"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/frontConcertButton" />
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
 </RelativeLayout>
 </layout>

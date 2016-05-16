@@ -40,4 +40,12 @@
     <string name="disc_tab_last">Last added</string>
     <string name="disc_tab_advanced">Advanced Search</string>
 
+    <!-- Concert List-->
+
+    <string name="concert_title">Albums</string>
+
+    <string name="concert_tab_favourites">Favourites</string>
+    <string name="concert_tab_last">Last added</string>
+    <string name="concert_tab_advanced">Advanced Search</string>
+
 </resources>
