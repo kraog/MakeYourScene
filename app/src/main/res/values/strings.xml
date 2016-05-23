@@ -17,7 +17,18 @@
         <item>Local</item>
     </string-array>
 
-
+    <string name="HtmlData">
+        <big>Hello Iam Big</big> \n
+        <small>Iam Small</small>  \n
+        <b>Iam bold</b> \n
+        <strike>Vanish 100$</strike>\n
+        <a href="http://bigknol.com">Goto Bigknol</a>
+        X<sub>2</sub>Y \n
+        X<sup>30</sup>Z \n
+        <u>Underline</u> \n
+        <i>Hi Five </i> \n
+        <tt>Hi Six</tt>\n
+   </string>
     <!-- Band List-->
 
     <string name="band_title">Bands</string>
@@ -42,7 +53,7 @@
 
     <!-- Concert List-->
 
-    <string name="concert_title">Albums</string>
+    <string name="concert_title">Concerts</string>
 
     <string name="concert_tab_favourites">Favourites</string>
     <string name="concert_tab_last">Last added</string>

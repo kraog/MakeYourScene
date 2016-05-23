@@ -27,6 +27,7 @@ public class MYSFirebase {
     public static final String NODE_BANDS = "bands";
     public static final String NODE_DISCS = "discs";
     public static final String NODE_CONCERTS = "concerts";
+    public DataManagerImpl dmi = new DataManagerImpl();
 
     public Firebase fb;
     static List<Band> bandList = new ArrayList<Band>();
@@ -35,12 +36,11 @@ public class MYSFirebase {
         this.fb = new Firebase("https://moveyourscene.firebaseio.com/");
     }
 
-  /*  public void setStupidDataFirebase(){
+    public void setStupidDataFirebase(){
 
-        fb.child(MYS_ROOT).child(NODE_DISCS).setValue(dmi.getMapDiscs());
-    }*/
+        fb.child(MYS_ROOT).child(NODE_CONCERTS).setValue(dmi.getMapConcerts());
+    }
     public Observable<DataSnapshot> getBandsSnapShot(){
-
         return RxFirebase.observe(fb.child(MYS_ROOT).child(NODE_BANDS));
     }
     public Observable<DataSnapshot> getDiscsSnapShot(){

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import kraog.moveyourscene.model.domain.Band;
+import kraog.moveyourscene.model.domain.Concert;
 import kraog.moveyourscene.model.domain.Disc;
 
 
@@ -20,6 +21,10 @@ public interface DataManager {
     public List<Disc> getDiscs();
 
     public List<Disc> getDiscs(@NonNull final Disc filter);
+
+    public List<Concert> getConcerts();
+
+    public List<Concert> getConcerts(@NonNull final Concert filter);
 
     public Band getBand(@NonNull String id);
 }

@@ -16,6 +16,13 @@ public class Concert implements Serializable{
     private String imageUrl;
     private Float cost;
 
+    public Concert(){}
+    public Concert(int id, String name, Date fecha, String imageUrl){
+        this.id = id;
+        this.name = name;
+        this.date_concert= fecha;
+        this.imageUrl = imageUrl;
+    }
     public int getId() {
         return id;
     }

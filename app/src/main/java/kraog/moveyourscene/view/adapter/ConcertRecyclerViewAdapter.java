@@ -33,7 +33,7 @@ public class ConcertRecyclerViewAdapter extends RecyclerView.Adapter<ConcertRecy
     @Override
     public ConcertViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ConcertItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.band_item, parent, false);
+                R.layout.concert_item, parent, false);
         return new ConcertViewHolder(binding);
     }
 

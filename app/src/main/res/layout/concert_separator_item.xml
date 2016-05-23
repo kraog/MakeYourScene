@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="concertItemVM"
+            type="kraog.moveyourscene.viewmodel.concerts.ConcertItemVM"/>
+    </data>
+    <FrameLayout
+        android:id="@+id/item_concert_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+            <TextView
+                android:text="Hola"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_large"
+                android:textColor="@android:color/widget_edittext_dark"
+                android:layout_gravity="center_horizontal"
+                android:foregroundTint="@android:color/widget_edittext_dark"
+                android:gravity="center_horizontal"
+                android:textSize="42dp" />
+    </FrameLayout>
+</layout>

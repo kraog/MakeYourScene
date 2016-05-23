@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="concertItemVM"
@@ -16,33 +17,43 @@
         android:focusableInTouchMode="true">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="@dimen/spacing_xsmall"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:foreground="?android:attr/selectableItemBackground">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:foreground="?android:attr/selectableItemBackground">
+            <TextView
+                bind:dateFormatted="@{concertItemVM.concert.date_concert}"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:padding="@dimen/spacing_large"
+                android:textColor="@android:color/white"
+                android:clickable="true"
+                android:background="@android:color/transparent"
+                android:textAlignment="center"
+                android:textSize="32dp"
+                android:gravity="center_horizontal" />
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="180dp"
-                android:background="@android:color/black"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 app:onClickListener="@{concertItemVM.getOnClickListener}"
                 app:imageUrl="@{concertItemVM.concert.imageUrl}"/>
-
-            <TextView
-                android:text="@{concertItemVM.concert.name}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/spacing_large"
-                android:textColor="@android:color/white"
-                android:background="@android:color/black"/>
         </LinearLayout>
     </FrameLayout>
 </layout>
