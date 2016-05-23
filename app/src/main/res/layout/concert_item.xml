@@ -41,7 +41,7 @@
                 android:clickable="true"
                 android:background="@android:color/transparent"
                 android:textAlignment="center"
-                android:textSize="32dp"
+                android:textSize="20dp"
                 android:gravity="center_horizontal" />
             </LinearLayout>
 

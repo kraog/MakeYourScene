@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -36,9 +37,11 @@ public class ConcertItemVM {
 
     @BindingAdapter({"bind:dateFormatted"})
     public static void bindFormattedDate(TextView view, Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        view.setText(Html.fromHtml("<big><big>"+cal.get(Calendar.DAY_OF_MONTH)+"</big></big><br>"+(cal.get(Calendar.MONTH)+1)+"<br><small>"+cal.get(Calendar.YEAR)+"</small>"));
+        SimpleDateFormat sdfDay = new SimpleDateFormat("EEE");
+        SimpleDateFormat sdfDayMonth = new SimpleDateFormat("d MMM");
+        SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
+
+        view.setText(Html.fromHtml("<big>"+sdfDay.format(date)+"</big><br>" + sdfDayMonth.format(date)+"<br><small>" +sdfYear.format(date) + "</small>"));
     }
 
     public interface ConcertItemListener{
