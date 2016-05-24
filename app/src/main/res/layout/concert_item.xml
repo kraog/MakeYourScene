@@ -20,7 +20,6 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_xsmall"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
@@ -30,19 +29,47 @@
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginRight="10dp"
             android:foreground="?android:attr/selectableItemBackground">
             <TextView
-                bind:dateFormatted="@{concertItemVM.concert.date_concert}"
+                bind:concert_dateFormatted="@{concertItemVM.concert.date_concert}"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
                 android:padding="@dimen/spacing_large"
                 android:textColor="@android:color/white"
                 android:clickable="true"
                 android:background="@android:color/transparent"
                 android:textAlignment="center"
-                android:textSize="20dp"
-                android:gravity="center_horizontal" />
+                android:textSize="14dp"
+                android:gravity="center_horizontal"
+                android:alpha="0.5" />
+
+            <Button
+                android:id="@+id/clock_button"
+                bind:concert_hourFormatted="@{concertItemVM.concert.date_concert}"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/clock_circular_outline22"
+                android:alpha="0.5" />
+            <Button
+                android:id="@+id/money_button"
+                bind:concert_moneyFormatted="@{concertItemVM.concert.cost}"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/coins22"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:alpha="0.5" />
+            <Button
+                android:id="@+id/locality_button"
+                bind:concert_locationFormatted="@{concertItemVM.concert.name}"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/map22"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:alpha="0.5" />
             </LinearLayout>
 
             <ImageView

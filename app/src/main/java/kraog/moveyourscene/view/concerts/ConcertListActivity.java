@@ -60,7 +60,7 @@ public class ConcertListActivity extends MYSListActivity implements ConcertRecyc
 
     @Override
     public void onItemClickedSuperior(View view,Concert concert) {
-        //ConcertDetailActivity.navigate(this,view.findViewById(R.id.image),concert);
+        ConcertDetailActivity.navigate(this,view.findViewById(R.id.image),concert);
     }
 
 

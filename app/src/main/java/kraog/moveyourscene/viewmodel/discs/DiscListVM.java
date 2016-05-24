@@ -90,26 +90,6 @@ public class DiscListVM extends MYSListVM {
             }
         };
     }
-    private void setStupidData(){
-        user.set(new User());
-        user.get().setMail("email_cojonudo@gmail.com");
-        user.get().setName("ou yeahh");
-        Preference pref = new Preference();
-        pref.setUrl_photo("https://upload.wikimedia.org/wikipedia/commons/0/03/Jacinto_Benavente.jpg");
-        user.get().setPreferences(pref);
-        MenuDrawerItem mdi = new MenuDrawerItem();
-        mdi.setTitle("Últimos Lanzamientos");
-        mdi.setImageResource(R.drawable.ic_add_black);
-        menuItemList.add(mdi);
-        MenuDrawerItem mdi2 = new MenuDrawerItem();
-        mdi2.setTitle("Próximos conciertos");
-        mdi2.setImageResource(R.drawable.ic_add_black);
-        menuItemList.add(mdi2);
-        MenuDrawerItem mdi3 = new MenuDrawerItem();
-        mdi3.setTitle("Últimos Lanzamientos");
-        mdi3.setImageResource(R.drawable.ic_add_black);
-        menuItemList.add(mdi3);
-    }
 
     public interface DiscListViewModelListener {
         public void onNavigationItemSelectecCompleted(String message, MenuItem menuItem);

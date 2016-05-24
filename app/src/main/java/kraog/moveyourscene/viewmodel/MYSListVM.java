@@ -35,7 +35,6 @@ public class MYSListVM {
         DaggerApplicationComponent.create().inject(this);
         this.mMYSListVMInterface = mMYSListVMInterface;
         this.mListener = mListener;
-        this.mysfb = new MYSFirebase();
     }
     public TabLayout.OnTabSelectedListener getTabListener(){
 
