@@ -11,6 +11,12 @@ import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -27,11 +33,13 @@ public class ConcertDetailVM {
     public ObservableField<Concert> concert;
     public ObservableField<String> bioCard;
     public static ConcertDetailViewModelListener mConcertDetailViewModelListener;
+    public static OnMapReadyCallback mOnMapReadyCallback;
     public static String cardUp = DiscDetailActivity.CARD_BUTTONS;
 
-    public ConcertDetailVM(@NonNull Concert concert, @NonNull ConcertDetailViewModelListener mConcertDetailViewModelListener, Context context) {
+    public ConcertDetailVM(@NonNull Concert concert, @NonNull ConcertDetailViewModelListener mConcertDetailViewModelListener, OnMapReadyCallback mOnMapReadyCallback, Context context) {
         this.concert = new ObservableField<>(concert);
         this.mConcertDetailViewModelListener = mConcertDetailViewModelListener;
+        this.mOnMapReadyCallback = mOnMapReadyCallback;
         this.bioCard = new ObservableField<String> (ConcertDetailActivity.CARD_BIO);
     }
 
@@ -68,6 +76,20 @@ public class ConcertDetailVM {
                     }
                 }
         );
+    }
+
+    public static void setMapReadyCallback(MapView mv){
+        mv.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+                googleMap.setMyLocationEnabled(true);
+
+                LatLng sydney = new LatLng(-34, 151);
+                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            }
+        });
     }
 
     /*

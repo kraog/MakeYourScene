@@ -9,7 +9,7 @@ import java.util.Date;
 public class Concert implements Serializable{
 
     private int id;
-    private int id_stage;
+    private String location;
     private String name;
     private String bio;
     private Date date_concert;
@@ -29,14 +29,6 @@ public class Concert implements Serializable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getId_stage() {
-        return id_stage;
-    }
-
-    public void setId_stage(int id_stage) {
-        this.id_stage = id_stage;
     }
 
     public String getBio() {
@@ -77,5 +69,13 @@ public class Concert implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

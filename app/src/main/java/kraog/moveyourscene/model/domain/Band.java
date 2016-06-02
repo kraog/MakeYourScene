@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Band implements Serializable {
 
+
     private int id;
     private int id_user;
     private String name;

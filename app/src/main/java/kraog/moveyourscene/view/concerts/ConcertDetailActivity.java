@@ -3,6 +3,8 @@ package kraog.moveyourscene.view.concerts;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -16,9 +18,16 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import kraog.moveyourscene.R;
 import kraog.moveyourscene.databinding.BandDetailActivityBinding;
@@ -40,6 +49,7 @@ public class ConcertDetailActivity extends AppCompatActivity implements ConcertD
     public static final String CARD_MAP = "kraog.moveyourscene.CARD_MAP";
     ConcertDetailActivityBinding binding;
     ConcertDetailVM concertDetailVM;
+    MapView mapView;
 
 
 
@@ -47,7 +57,7 @@ public class ConcertDetailActivity extends AppCompatActivity implements ConcertD
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Concert concert = (Concert) getIntent().getSerializableExtra(EXTRA_CONCERT);
-        concertDetailVM = new ConcertDetailVM(concert,this,this.getApplicationContext());
+        concertDetailVM = new ConcertDetailVM(concert,this,this,this.getApplicationContext());
         binding = DataBindingUtil.setContentView(this, R.layout.concert_detail_activity);
         binding.setConcertDetailVM(concertDetailVM);
 
@@ -59,7 +69,7 @@ public class ConcertDetailActivity extends AppCompatActivity implements ConcertD
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        MapView mapView = binding.layoutMapComponent.mapObjectId;
+        mapView = binding.layoutMapComponent.mapObjectId;
         mapView.onCreate(savedInstanceState);
 
         // Gets to GoogleMap from the MapView and does initialization stuff
@@ -126,5 +136,42 @@ public class ConcertDetailActivity extends AppCompatActivity implements ConcertD
     public void onMapReady(GoogleMap googleMap) {
         googleMap.getUiSettings().setMyLocationButtonEnabled(false);
         googleMap.setMyLocationEnabled(true);
+        Geocoder dc = new Geocoder(this, Locale.getDefault());
+        List<Address> addresses = new ArrayList<Address>();
+        try {
+            addresses = dc.getFromLocationName("Bilbao",5);
+        } catch (Exception ex){
+            //// TODO: 01/06/2016  
+        }
+
+
+        LatLng bilbao = new LatLng(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
+        googleMap.addMarker(new MarkerOptions().position(bilbao).title("Marker in Bilbao"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bilbao,12));
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 }
