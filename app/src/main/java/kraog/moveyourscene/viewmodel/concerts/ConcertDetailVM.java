@@ -5,6 +5,8 @@ import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v7.graphics.Palette;
@@ -20,7 +22,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import kraog.moveyourscene.model.domain.Concert;
 import kraog.moveyourscene.model.domain.Disc;
@@ -30,6 +34,7 @@ import kraog.moveyourscene.view.discs.DiscDetailActivity;
 
 public class ConcertDetailVM {
 
+    public static Context context;
     public ObservableField<Concert> concert;
     public ObservableField<String> bioCard;
     public static ConcertDetailViewModelListener mConcertDetailViewModelListener;
@@ -41,6 +46,7 @@ public class ConcertDetailVM {
         this.mConcertDetailViewModelListener = mConcertDetailViewModelListener;
         this.mOnMapReadyCallback = mOnMapReadyCallback;
         this.bioCard = new ObservableField<String> (ConcertDetailActivity.CARD_BIO);
+        this.context = context;
     }
 
 
@@ -84,10 +90,18 @@ public class ConcertDetailVM {
             public void onMapReady(GoogleMap googleMap) {
                 googleMap.getUiSettings().setMyLocationButtonEnabled(false);
                 googleMap.setMyLocationEnabled(true);
+                Geocoder dc = new Geocoder(context, Locale.getDefault());
+                List<Address> addresses = new ArrayList<Address>();
+                try {
+                    addresses = dc.getFromLocationName("Bilbao",5);
+                } catch (Exception ex){
+                    //// TODO: 01/06/2016
+                }
 
-                LatLng sydney = new LatLng(-34, 151);
-                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+                LatLng bilbao = new LatLng(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
+                googleMap.addMarker(new MarkerOptions().position(bilbao).title("Marker in Bilbao"));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bilbao,12));
             }
         });
     }
